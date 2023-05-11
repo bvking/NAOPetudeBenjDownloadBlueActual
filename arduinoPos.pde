@@ -24,6 +24,8 @@ void arduinoPos() {
     if  (rev[i]==0 && (net.phase[i] > 0) ) {  //  number of revolution is 0 and rotation is clock wise     
       Pos[i]= int (map (net.phase[i], 0, TWO_PI, 0, numberOfStep));         
     }
+
+    
     DataToDueCircularVirtualPosition[i]=Pos[i];
    // print ( " Pos " + i + " " + Pos[i] );
    // print ( " DataToDueCircularVirtualPosition " +  (int) Pos[i]+ (rev[i]*numberOfStep));

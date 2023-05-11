@@ -289,7 +289,9 @@ void trigEventWithAbletonSignal() {  // change de sens de propagagtion.   ATTENT
 
       if (measure > 66 && measure < 76 && beatPrecised == 5 && beatPrecisedTrigged==true ){ // && frameCount>formerFrameTrigging+1
                  for (int i = 0; i < networkSize-0; i++) {    
-        net.naturalFrequency[i]*=1.2;
+        net.naturalFrequency[i]*=1.5;
+         key = 'i'; keyReleased();
+      
         textSize(200);
        text (" multiply ", width/2, height/2);
        print ( " multiply ");  print ( " multiply ");  println ( " multiply ");
@@ -304,7 +306,7 @@ void trigEventWithAbletonSignal() {  // change de sens de propagagtion.   ATTENT
           text (" measure%4 ", width/2, height/2);
                  print ( " measure%4 ");  print ( " measure%4 ");  println ( " multiply ");
 
-         key = 'i'; keyReleased(); //keyReleased();
+       //  key = 'i'; keyReleased(); //keyReleased();
       } 
      }
     }
@@ -367,7 +369,13 @@ void trigEventWithAbletonSignal() {  // change de sens de propagagtion.   ATTENT
      text ( " measure  " + measure + "beatPrecised  " + beatPrecised + " key " + key + " " + keyCode, 300, 1100);
      text ( " beatPrecisedTrigged " + beatPrecisedTrigged + " freq  " + net.naturalFrequency[3] , 300, 1200);
 
+ 
+
+    
      phasePattern();
+       for (int i = 0; i < networkSize; i++) {
+   //  net.phase[i]=netPhaseBase[i];
+       }
      oldSplitTimeLfo = splitTimeLfo; 
 } 
 
