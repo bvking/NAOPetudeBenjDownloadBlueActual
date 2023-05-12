@@ -1,243 +1,220 @@
+/*
+int actualSec,lastSec,measure,measureToStartRecording;
+boolean bRecording = false;
+boolean mouseRecorded =  true;
+float movementInterpolated, angleToInterpolate;
 
+*/
+int numberOfSample;
 float []  sampledModifiedChecking = new float [1000000000];
 
-float calcAngle() {
- float a = atan2(mouseY-height/8, mouseX-width/8); // 2
- if (a<0) {
-    a=map(a, -PI, 0, PI, TWO_PI);
-  }
-  return a;
-}
+//--------------------        coordinates of an angle in radians // no need here
 
+//--------------------        method of interpolation to return the position of (rotation) by adding modulo
+/*
+float mlerp(float x0, float x1, float t, float M ){
+   float dx = (x1 - x0 + 1.5*M) % M - 0.5*M;
+   return (x0 + t * dx + M) % M;
+}
+*/
 class Sample {
-  int t;
-  float x, y;
-  Sample( int t, float x, float y ) {
-    this.t = t;  this.x = x;  this.y = y;
-  }
+int t;
+float x, y;
+Sample( int t, float x, float y ) {
+this.t = t; this.x = x; this.y = y;
+}
 }
 
 class Sampler {
-  
-  ArrayList<Sample> samples;
-  ArrayList<Sample> samplesModified;
-  int startTime;
-  int playbackFrame;
-  
-  Sampler() {
-    samples = new ArrayList<Sample>();
-        samplesModified = new ArrayList<Sample>();
-    startTime = 0;
-  }
-  void beginRecording() {   
-    samples = new ArrayList<Sample>();
-    samplesModified = new ArrayList<Sample>();
-    playbackFrame = 0;
-  }
-  void addSample( float x, float y ) {  // add sample when bRecording
-    int now = millis();
-    if( samples.size() == 0 ) startTime = now;
-    samples.add( new Sample( now - startTime, x, y ) );
-  }
-  int fullTime() {
-    return ( samples.size() > 1 ) ? 
-    samples.get( samples.size()-1 ).t : 0;
-  }
-
-  void beginPlaying() {
-    startTime = millis();
-    playbackFrame = 0;
-    println( samples.size(), "samples over", fullTime(), "milliseconds" );
-    if ( samples.size()>0 ){
-
-      
-   
-
-  
-       float firstAngle = samples.get(0).y ;
-       float lastAngle =  samples.get(samples.size()-1).y ;
-
-        println (" firstAngle" + firstAngle + " " + lastAngle + " " );
-      
-
-      for (int i = 0; i < int (numberOfPointInterpolated); i++) {
-    
-       interpolatedAngle[i]  = lerp(firstAngle, lastAngle, i/float (numberOfPointInterpolated));       
-       println (" interp " + i + " " + interpolatedAngle[i] + " " );
-       fill( 255, 127*i, 127*i );
-       circle ( 200* cos ( interpolatedAngle[i]), 200*sin ( interpolatedAngle[i]), 200);
-    //   circle ( 100* cos ( interpolatedAngle[i])+400, 100*sin ( interpolatedAngle[i])+400, 200);
-      // circle ( 100* cos ( newPosF[i])+400, 100*sin ( newPosF[i])+400, 200);
-      // circle ( 100* cos ( newPosF[i])+400, 100*sin ( newPosF[i])+400, 200);
-      
-        }
-
-
-
-           for(int i = samples.size() - 2; i < samples.size() - 0; i++) {
-      
-            println ( " i size-0  " + i + " i-samples.size()+3 " +  (i- samples.size()+3));
-     
-         }
-
-
-        for(int i = samples.size() - 3; i < samples.size() - 1; i++) {
-
-          println ( " i size-1 " + i + " i-samples.size()+3 " +  (i- samples.size()+3));
-        
-      //  samples.add( new Sample(  i, interpolatedAngle[i -samples.size() +3], interpolatedAngle[i -samples.size() +3] ) );
-
-           }
-
-         for (int i = 0; i < int (numberOfPointInterpolated); i++) {
-           // add interpo to the end
-   
-            samples.add( new Sample(  samples.size() -1 - numberOfPointInterpolated + i, interpolatedAngle[i ], interpolatedAngle[i] ) );
-
-             println( " interpolated and situa A bon " + (samples.size()-1 -  numberOfPointInterpolated + i)+ " " + samples.get(samples.size()-1 -  numberOfPointInterpolated + i).x);
-             println( " interpolated and situa i " + (i)+ " " + samples.get(i).x);
-             println( " interpolated and situa A " + (samples.size()-1 -  numberOfPointInterpolated + i)+ " " + samples.get(i).x);
-
-
-           }
  
-         for (int i = 0; i < int (numberOfPointInterpolated); i++) {
-      println ( " (samples.size()-1 -  numberOfPointInterpolated + i) " + (samples.size()-1 -  numberOfPointInterpolated + i) );
-      //      samples.add( new Sample(  i, interpolatedAngle[i], interpolatedAngle[i] ) );
-      //****** for(int i = samples.size() - 3; i < samples.size() - 1; i++) {
-     // samples.add( new Sample(  i, interpolatedAngle[samples.size() - i-2], interpolatedAngle[samples.size() - i-2] ) );
-     //   samplesModified.add( new Sample( (samples.size()- i-2), interpolatedAngle[(samples.size()- i-2)], interpolatedAngle[(samples.size()- i-2)] ) );
-    
-         }
-       }
-       
-   
-     // samplesModified.add( new Sample(samples.get(0).t, samples.get(0).x , samples.get(0).y ) );
-         for(int i = 0; i < samples.size() - 1; i++) {
-//      samplesModified.add( new Sample(samples.get(i+0).t, samples.get(i+1).x ,  samples.get(i+1).y ) ) ;
-        samplesModified.add( new Sample(samples.get(i+1).t, samples.get(i+1).x ,  samples.get(i+1).y ) ) ;
-      if (i==samples.size()-1 -  numberOfPointInterpolated ){
-        println (   " interpolated modif and situa A bon " +  i+ " " + samplesModified.get(i).x);
-      }
-       }
-      for(int i = 0; i < samples.size() - 1; i++) {
-        
-     //   dist += sqrt((samples.get(i).x - samples.get(i +1 ).x)*(samples.get(i).x - samples.get(i +1 ).x) + (samples.get(i).y - samples.get(i +1 ).y)*(samples.get(i).y - samples.get(i +1 ).y));
-      //  samplesModified.add( new Sample(samples.get(i+1).t, (int) (samples.get(i +1).x + (dist * deltax) / sumdist), (int) (samples.get(i+1).y +( dist * deltay )/ sumdist)) );
-        print(samples.get(i).x);
-        print(",");
-        print(samples.get(i).y);
-        print(",");
-        print( " good data x " + i + " " + samplesModified.get(i).x);
-        print(",");
-        print( " good data y " + i + " " + samplesModified.get(i).y);
-        println("");  
-
-         sampledModifiedChecking[i] =    samplesModified.get(i).y;  
-         // movementInterpolated =   samplesModified.get(i).y;  
-
-      }
-  }
+ArrayList<Sample> samples;
+ArrayList<Sample> samplesModified;
+int startTime;
+int playbackFrame;
  
+Sampler() {
+samples = new ArrayList<Sample>();
+samplesModified = new ArrayList<Sample>();
+startTime = 0;
+}
+void beginRecording() {
+samples = new ArrayList<Sample>();
+samplesModified = new ArrayList<Sample>();
+playbackFrame = 0;
+}
+void addSample( float x, float y ) { // add sample when bRecording
+int now = millis();
+if( samples.size() == 0 ) startTime = now;
+samples.add( new Sample( now - startTime, x, y ) );
+}
+int fullTime() {
+return ( samples.size() > 1 ) ?
+samples.get( samples.size()-1 ).t : 0;
+
+}
+void beginPlaying() {
+startTime = millis();
+playbackFrame = 0;
+println( samples.size(), "samples over", fullTime(), "milliseconds" );
+if(samples.size() > 0){
+  numberOfSample=samples.size();
+  
+float deltax = samples.get(0).x - samples.get(samples.size()-1).x;
+float deltay = samples.get(0).y - samples.get(samples.size()-1).y;
+float sumdist = 0;
  
-  void draw() {
-    stroke( 255 );
-    
-    //**RECORD
-    beginShape(LINES);
-    for( int i=1; i<samples.size()-1; i++) {
-      vertex( samplesModified.get(i-1).x, samplesModified.get(i-1).y ); // replace vertex with Pvector
-      vertex( samplesModified.get(i).x, samplesModified.get(i).y );
-     //  movementInterpolated = samplesModified.get(i).y;
+for(int i = 0; i < samples.size() - 1; i++) {
+sumdist += sqrt((samples.get(i).x - samples.get(i +1 ).x)*(samples.get(i).x - samples.get(i +1 ).x) + (samples.get(i).y - samples.get(i +1 ).y)*(samples.get(i).y - samples.get(i +1 ).y));
+}
+samplesModified.add( new Sample(samples.get(0).t, samples.get(0).x , samples.get(0).y ) );
+float dist = 0;
+for(int i = 0; i < samples.size() - 1; i++) {
+dist += sqrt((samples.get(i).x - samples.get(i +1 ).x)*(samples.get(i).x - samples.get(i +1 ).x) + (samples.get(i).y - samples.get(i +1 ).y)*(samples.get(i).y - samples.get(i +1 ).y));
+samplesModified.add( new Sample(samples.get(i+1).t, (float) (samples.get(i +1).x + (dist * deltax) / sumdist), (float) (samples.get(i+1).y +( dist * deltay )/ sumdist)) );
+print(samples.get(i).x);
+print(",");
+print(samples.get(i).y);
+print(",");
+print( " good data x " + samplesModified.get(i).x);
+print(",");
+print( " good data y " + samplesModified.get(i).y);
+println("");
+}
+}
+}
+ 
+ void draw() {
+stroke( 255 );
+//**RECORD
+beginShape(LINES);
+for( int i=1; i<samples.size(); i++) {
+vertex( samplesModified.get(i-1).x, samplesModified.get(i-1).y ); // replace vertex with Pvector
+vertex( samplesModified.get(i).x, samplesModified.get(i).y );
+}
+endShape();
+//**ENDRECORD
+ 
+//**REPEAT
+int now = (millis() - startTime) % fullTime();
+if( now < samplesModified.get( playbackFrame ).t ) playbackFrame = 0;
+while( samplesModified.get( playbackFrame+1).t < now )
+playbackFrame = (playbackFrame+1) % (samples.size()-1);
+Sample s0 = samplesModified.get( playbackFrame );
+Sample s1 = samplesModified.get( playbackFrame+1 );
+float t0 = s0.t;
+float t1 = s1.t;
+float dt = (now - t0) / (t1 - t0);
 
-    }
-    endShape();
-    //**ENDRECORD
-    
-    //**REPEAT
-    int now = (millis() - startTime) % fullTime();
-    if( now < samplesModified.get( playbackFrame ).t ) playbackFrame = 0;
-    while( samplesModified.get( playbackFrame+1).t < now )
-      playbackFrame = (playbackFrame+1) % (samples.size()-1);
-    Sample s0 = samplesModified.get( playbackFrame );
-    Sample s1 = samplesModified.get( playbackFrame+1 );
-    float t0 = s0.t;
-    float t1 = s1.t;
-    float dt = (now - t0) / (t1 - t0);
+//float x =lerp( s0.x, s1.x, dt );  // interpolation without modulo
+//float y =lerp( s0.y, s1.y, dt ); // 
 
-  //***float x =constrain (lerp( s0.x, s1.x, dt ),-300, 300);
-   //  formerInterpolatedY=interpolatedY;
-   //  interpolatedY = lerp( s0.y, s1.y, dt );
-  //** float y =constrain (lerp( s0.y, s1.y, dt ),-300, 300);
+float x =mlerp( s0.x, s1.x, dt, TWO_PI ); // interpolation with modulo, it's better
+float y =mlerp( s0.x, s1.x, dt, TWO_PI );
 
-  //** POLAR VERSION
-    float x =constrain (mlerp( s0.x, s1.x, dt, TWO_PI ),0, TWO_PI);
-    float y =constrain (mlerp( s0.y, s1.y, dt, TWO_PI ),0, TWO_PI);
-    //  circle( (int) s0.x, (int) s0.x, 20 );
-    circle( cos (x)*100, sin(y)*100, 20 );
-
-    fill (100, 100, 100);
-    circle ( 200* cos ( interpolatedAngle[1]), 200*sin ( interpolatedAngle[1]), 200);
-    circle ( 200* cos ( interpolatedAngle[0]), 200*sin ( interpolatedAngle[0]), 200);
-
-
-     
-    textSize (50);
-  
-    movementInterpolated = y ;
-    text (" x " + x + " y " + y + " mov " + movementInterpolated , 100, 500);
-    
-   
-
-  /*  
-      print( " good data y " + y);
-      formerInterpolatedY=interpolatedY;
-      interpolatedY=y+300;
-
-      oldMovementInterpolated = movementInterpolated;
-    text( " movementInterpolated " + movementInterpolated + " formerInterpolatedY " +formerInterpolatedY + " interpolatedY "+ interpolatedY, 400, 400 );
-      
-      if (interpolatedY > 300 && interpolatedY<= 600 && formerInterpolatedY<interpolatedY){
-       movementInterpolated= map (interpolatedY, 300, 600,  PI, PI+PI/2);
-       text( "   you are  going up first 1/4?  " , 400, 500 );
-       }
-
-   // 600 to 300 2 * 1/4
-      if (interpolatedY > 300 && interpolatedY<= 600 && formerInterpolatedY>interpolatedY){
-       movementInterpolated= map (interpolatedY, 600, 300,  PI+PI/2, TWO_PI);
-       text( "   you are  going up second 2/4?  " , 400, 600 );
-       }
-
-       if (interpolatedY <= 300 && interpolatedY>= 0 && formerInterpolatedY>interpolatedY){
-       movementInterpolated= map (interpolatedY, 300, 0,  0, PI/2);
-       text( "   you are  going up third 3/4?  " , 400, 700 );
-       }
-
-        if (interpolatedY >=0 && interpolatedY<= 300 && formerInterpolatedY<interpolatedY){
-       movementInterpolated= map (interpolatedY, 0, 300,  PI/2, 0);
-       text( "   you are  going up forth 4/4?  " , 400, 800 );
-       }
-*/
-
-  
-     // movementInterpolated= map (y, -300, 300, 0, TWO_PI);   
-
-     //  movementInterpolated= map (y/ displacement, -1, 1, 0, TWO_PI);
-    
-      /*
-        if (formerInterpolatedY<=interpolatedY){
-       movementInterpolated= map (interpolatedY,  0, TWO_PI,  0, -TWO_PI);
-
-       text( "   you are  go up?  " , 400, 400 );
-       }
-       else {
-       movementInterpolated=map (interpolatedY,  0, TWO_PI, 0, TWO_PI);
-          text( "   you are  go down?  " , 400, 400 );
-       }
-      */  
-  }
+movementInterpolated = y ;
+text (" mov " +  (movementInterpolated) , 100, 500);
+fill (255,255,255);
+circle ( 100* cos (movementInterpolated)+200, 100*sin (movementInterpolated)+200, 20);
+stroke(255);
+ }
 }
 
 Sampler sampler;
+/*
+void setup() {  
+  size( 800, 800, P3D );
+  frameRate(30); // when size is set as P3D (3 dimension) we have 27 or 28 frame (loop) per seconde
+  sampler = new Sampler(); 
+  mouseY= height/2;
+}
 
-//******************         END INTERPOLATION SamplingMovement
+
+
+void draw() {
+  background(50);
+   for (int i=0; i<=8; i++ ){ 
+    stroke(2);
+  line (0, height/8*i, width, height/8*i); // horizon
+  line (width/8*i, 0, width/8*i, height); // vertical
+
+  }
+  textSize (20);
+   //----------------------------------------
+  angleToInterpolate = (float) map (mouseY, 0, 200, 0, TWO_PI)%TWO_PI; 
+  fill( 100, 0, 0);
+  circle ( 100* cos (angleToInterpolate)+200, 100*sin (angleToInterpolate)+200, 20); 
+  //----------------------------------------
+  pushMatrix();
+  translate(width/2, height/2);
+  rotate(angleToInterpolate);
+  translate(28, 0);
+  rect(-30, -5, 60, 10);
+  popMatrix();
+  //----------------------------------------
+  ellipse(width/2, height/2, 5, 5);
+  text( " repeted  " +nf (movementInterpolated, 0, 2)  + " original " +nf (angleToInterpolate,0,2 ),width/2, height/4);
+//  text( " repeted  " +nf (movementInterpolated, 0, 2) , 10, 0);
+  textSize (20);
+  
+
+ if  (actualSec!=lastSec){
+       lastSec=actualSec;
+       measure++;
+   }
+   
+  text (measure, 100, 100 );
+  actualSec =(int) (millis()*0.001);  // 
+
+  activeSampling();
+  stopSampling();
+  
+  if( bRecording) { // draw circle
+ //   circle( mouseX, mouseY, 10 );
+ //   sampler.addSample( mouseX, mouseY );
+     textSize(100);
+     fill (0, 255, 0);
+     text (measure, 200, 100 );
+  sampler.addSample( angleToInterpolate, angleToInterpolate );
+  }
+  
+  else {    
+  if( sampler.fullTime() > 0 )
+        sampler.draw();
+  }
+
+  if(numberOfSample > 0){
+  
+  println (frameCount%numberOfSample+1 + " " + movementInterpolated);
+  }
+}
+
+void mousePressed() {
+  bRecording = true;   // draw circle
+  mouseRecorded = true;
+  measure=0;
+}
+  
+void activeSampling() { 
+  if (measure==0 && actualSec!=lastSec && mouseRecorded == true) {
+     textSize(100);
+    
+     fill (0, 255, 0);
+     text (measure, 200, 100 );
+  sampler.beginRecording();
+  }
+}
+
+void stopSampling() { 
+  if (measure==2 && actualSec!=lastSec) {  
+     textSize(100);
+   
+     fill (255, 0, 0); 
+       text (measure, 200, 100 );
+  mouseRecorded = false;
+     //**REPEAT
+  bRecording = false;
+  sampler.beginPlaying();
+  }
+  
+}
+*/
