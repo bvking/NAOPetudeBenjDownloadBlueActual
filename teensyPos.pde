@@ -89,7 +89,7 @@ void mapDataToMotor() {
 
      TrigmodPos[i]=1;
       
-      if (net.oldPhase[i] > 0 ) {
+      if (net.oldPhase[i] > 0 && doo!=true ) {
 
     if ( oldPosF[i]>newPosF[i]) { //
          revLfo[i]++;

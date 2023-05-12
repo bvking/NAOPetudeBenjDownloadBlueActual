@@ -651,10 +651,10 @@ for (int i = 0; i < networkSize; i++) {
 //==================== sampling from encoder
 
      if (measure <=3){
-  send24DatasToTeensy6motors(5, 3, -3, -1);
+  send24DatasToTeensy6motors(5, -3, -3, -1);
       }
 
-  // newPosF[0]=  map (encodeur[0], 0, 800, 0, TWO_PI)%TWO_PI;  // tourner CCW
+   newPosF[0]=  map (encodeur[0], 0, 800, 0, TWO_PI)%TWO_PI;  // tourner CCW
 
       text  ( " newPosF[0] " + newPosF[0] + " encodeur[0] " +  abs ((int)map (encodeur[0], 0, 800, 0, 800)%800), 300, -1200);
 
@@ -663,11 +663,11 @@ for (int i = 0; i < networkSize; i++) {
 
 
 //==================== sampling from mouseY
-
+/*
        float radianTorec;
        radianTorec=(float) map (mouseY, 0, 200, 0, TWO_PI)%TWO_PI;  // position from Ableton LFOdecay    
        newPosF[0]= radianTorec;
-
+*/
 
     //     float x = displacement*cos(newPosF[i]);  
     //    float  y = displacement*sin(newPosF[i]);  

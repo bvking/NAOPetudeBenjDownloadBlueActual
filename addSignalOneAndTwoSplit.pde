@@ -41,7 +41,7 @@ void addSignalOneAndTwo(){
      print (" newPosXaddSignal[oscillatorChange] " + newPosXaddSignal[oscillatorChange]);
      
    //   phaseFollowLFO[oscillatorChange]= lfoPhase[2];  
-     signal[4] = (0*PI + (frameCount / 20.0) * cos (1000 / 500.0)*-1)%1;
+     signal[4] = (0*PI + (frameCount / 30.0) * cos (1000 / 500.0)*-1)%1;
     phaseFollowLFO[oscillatorChange]= map (signal[4], 0, 1, 0, TWO_PI);    // speed of rotation
   // phaseFollowLFO[oscillatorChange]= map (0.01, 0, 1, 0, TWO_PI); //   ..DON4T WORK
 
@@ -186,7 +186,7 @@ void addSignalOneAndTwo(){
    
      oscSend();
      assignMotorWithPosition();
-     send24DatasToTeensy6motors(10, 3, -3, -1);
+     send24DatasToTeensy6motors(4, 3, -3, -1);
 
 }
  

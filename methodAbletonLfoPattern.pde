@@ -57,15 +57,15 @@ void lfoPattern(){
    
      signal[4] = (0*PI + (frameCount / 300.0) * cos (1000 / 500.0)*-1)%1;
     
-     signal[5] = (0*PI + (frameCount / 30.0) * cos (1000 / 500.0)*-1)%1;  // ==> 15 = 8 sec
+     signal[5] = (0*PI + (frameCount / 50.0) * cos (1000 / 500.0)*-1)%1;  // ==> 15 = 8 sec
     
       println (" pattern cccccccc ",   " signal[10] ", signal[10],   " signal[11] ", signal[11]); 
       
-    lfoPhase[1] = (0*PI + (frameCount / 25.0) * cos (1000 / 500.0)*-1)%TWO_PI;
+    lfoPhase[1] = (0*PI + (frameCount / 40) * cos (1000 / 500.0)*-1)%TWO_PI;
     
-    lfoPhase[2] = (PI + (frameCount / 10.0) * cos (1000 / 500.0)*-1)%TWO_PI;  // ==> 15 = 8 sec
+    lfoPhase[2] = (PI + (frameCount / 30.0) * cos (1000 / 500.0)*-1)%TWO_PI;  // ==> 15 = 8 sec
     
-    lfoPhase[3] = map ((((cos  (frameCount / 10.0))*-1) %2), -1, 1, -TWO_PI, TWO_PI);  // sinusoida
+    lfoPhase[3] = map ((((cos  (frameCount / 25.0))*-1) %2), -1, 1, -TWO_PI, TWO_PI);  // sinusoida
  
     signalToSplit= lfoPhase[3];
     
