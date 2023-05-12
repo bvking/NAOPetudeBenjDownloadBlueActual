@@ -152,7 +152,7 @@ modeStartKeyToFollow = " null ";
      }
 
 
-   propagationSpeed=50;
+   propagationSpeed=70;
    splitTimeScaleRotation(propagationSpeed);
    propagation2wayRotationBis(); 
    mapDataToMotor();
