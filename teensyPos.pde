@@ -98,7 +98,6 @@ void mapDataToMotor() {
     }
      }
     
-   //  if ( oldPosF[i]>newPosF[i] ){  // && newPosXaddSignal[i]>-HALF_PI &&  newPosXaddSignal[i]< HALF_PI 
     text (  " net.oldPhase[i] " + net.phase[i] + " " + newPosXaddSignal[i] + " oldOldPosF " + oldOldPosF[i] + " oldPosF " + oldPosF[i] + " newPosF " + newPosF[i], width*2, i*50);
     print (  newPosXaddSignal[i] + " oldOldPosF " + oldOldPosF[i] + " oldPosF " + oldPosF[i] + " newPosF " + newPosF[i]);
 
@@ -127,8 +126,8 @@ void mapDataToMotor() {
 
    
      print (" revLFO "); print ( i); print ("  "); println (revLfo[i]);   
-     text ("count", -1600, height-500 - 75*i);
-     text ( revLfo[i], -1400, height-500 - 75*i);
+     text (i + "count", -1600, width-400 - 75*i);
+     text ( revLfo[i], -1400, width-400 - 75*i);
      }
      
      text (" mode " + keyMode , -1600, height-300 );  
