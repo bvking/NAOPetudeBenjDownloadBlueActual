@@ -649,20 +649,20 @@ for (int i = 0; i < networkSize; i++) {
      send24DatasToTeensy6motors(5, -3, -3, -1);
       }
 
-        newPosF[0]=  map (encodeur[0], 0, 800, 0, TWO_PI)%TWO_PI;  // tourner CCW
+    //    newPosF[0]=  map (encodeur[0], 0, 800, 0, TWO_PI)%TWO_PI;  // tourner CCW
         text  ( " newPosF[0] " + newPosF[0] + " encodeur[0] " +  abs ((int)map (encodeur[0], 0, 800, 0, 800)%800), 300, -1200);
      //==================== sampling from mouseY
-/*
+
        float radianTorec;
        radianTorec=(float) map (mouseY, 0, 200, 0, TWO_PI)%TWO_PI;  // position from Ableton LFOdecay    
        newPosF[0]= radianTorec;
-*/
+
 
       sphere(side*3);
       sphereDetail( 4*5); 
       //==================== 
 
-      text ( " newPosF " + newPosF[0], 0, 500);
+      text ( " newPosF " + newPosF[0], 0, 600);
  
       float rayon=displacement;
       float polarToCartesionX= displacement*cos(newPosF[0]);

@@ -102,7 +102,8 @@ void mapDataToMotor() {
     text (  " net.oldPhase[i] " + net.phase[i] + " " + newPosXaddSignal[i] + " oldOldPosF " + oldOldPosF[i] + " oldPosF " + oldPosF[i] + " newPosF " + newPosF[i], width*2, i*50);
     print (  newPosXaddSignal[i] + " oldOldPosF " + oldOldPosF[i] + " oldPosF " + oldPosF[i] + " newPosF " + newPosF[i]);
 
-    if ((doC==true && doo==true && doB!=true )){
+  //  if ((doC==true && doo==true && doB!=true )){
+       if ((doo==true )){ // doC==true && 
  textSize (100);
     if (net.oldPhase[i] < 0 || net.oldPhase[i] > 0  ) {
 

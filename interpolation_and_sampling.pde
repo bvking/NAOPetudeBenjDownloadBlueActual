@@ -6,7 +6,7 @@ float movementInterpolated, angleToInterpolate;
 
 */
 int numberOfSample;
-float []  sampledModifiedChecking = new float [1000000000];
+float []  sampledModifiedChecking = new float [100000];
 
 //--------------------        coordinates of an angle in radians // no need here
 
