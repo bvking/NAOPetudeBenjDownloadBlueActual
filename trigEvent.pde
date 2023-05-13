@@ -370,8 +370,6 @@ void trigEventWithAbletonSignal() {  // change de sens de propagagtion.   ATTENT
      text ( " beatPrecisedTrigged " + beatPrecisedTrigged + " freq  " + net.naturalFrequency[3] , 300, 1200);
 
  
-
-    
      phasePattern();
        for (int i = 0; i < networkSize; i++) {
    //  net.phase[i]=netPhaseBase[i];

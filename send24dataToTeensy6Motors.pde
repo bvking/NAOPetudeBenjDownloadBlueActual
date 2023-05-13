@@ -53,7 +53,7 @@ void send24DatasToTeensy6motors(int accelerationRatio, int driver0_On_Off, int c
    //println ( " noPortPlugged " + portsUSB[0]); 
    //}
 
-    teensyport.write(dataFromMode);
+   // teensyport.write(dataFromMode);
       if (frameCount ==5) noLoop();
   }
 
@@ -77,14 +77,14 @@ println(portsUSB);
 
     //*************** WITH TEENSY connected
  //teensyport = new Serial(this, ports[0], 115200);// si port non connecte Monterey mais buetooth ouvert
-  //  teensyport = new Serial(this, ports[1], 115200);// si port non connecte Catalina 
-   teensyport = new Serial(this, ports[1],115200); // si port connecté Monterey
+    teensyport = new Serial(this, ports[1], 115200);// si port non connecte Catalina 
+  // teensyport = new Serial(this, ports[1],115200); // si port connecté Monterey
  
   //*************** WITHOUT ENODEER connected
  
-   encoderReceiveUSBport101 =  new Serial(this,ports[2], 1000000); // si port connecté Monterey
+ //  encoderReceiveUSBport101 =  new Serial(this,ports[2], 1000000); // si port connecté Monterey
 
   // Read bytes into a buffer until you get a linefeed (ASCII 10):
-   encoderReceiveUSBport101.bufferUntil('\n');
+ //  encoderReceiveUSBport101.bufferUntil('\n');
 
  }

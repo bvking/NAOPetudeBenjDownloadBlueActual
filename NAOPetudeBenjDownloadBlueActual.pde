@@ -907,7 +907,7 @@ for (int i = 0; i < networkSize; i++) {
 
   textSize (100);
 
-
+ 
   if ( key=='*' ) {// || key==',' || key==';' || key==':'
     circularMov = true;
   }
@@ -920,7 +920,7 @@ for (int i = 0; i < networkSize; i++) {
   println (cohesionTrig);
 
   // ***** automatise Oscillator Moving with a former Key
- //  arduinoPos(); // // carefull with arduinoPos and function after arduinopos
+   arduinoPos(); // // carefull with arduinoPos and function after arduinopos
 /*
    if (DataToDueCircularVirtualPosition[0]>0){
        for (int i = 0; i < networkSize; i=+1 ){

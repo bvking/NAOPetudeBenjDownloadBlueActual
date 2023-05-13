@@ -3,7 +3,7 @@ void addSignalOneAndTwoTer() { // inspireé de quater . splitTimeQuater A reconf
      
    if (measure == 66 && beatPrecised == 4 && beatPrecisedTrigged==true) {
         
-           keyCode = ALT; key = 'v'; // key 
+           keyCode = ALT; key = 'v'; // come back to trigEvent
        //    key ='0'; keyReleased();
         //   formerKeyMetro = '*';
 
@@ -54,13 +54,15 @@ void addSignalOneAndTwoTer() { // inspireé de quater . splitTimeQuater A reconf
 
 
   //*_  propagationMode();
-    splitTimeScale(50.0);
-     propagation2way();
+     splitTimeScale(50.0); // withSignal2
+   //++  propagation2way();
 
+   propagation2wayWithSignal2();
 
   
- //*+ propagation2way();
+ 
 
+  // addSignalOneAndTwoTerOriginal();
    mapDataToMotor(); // conversion en netphasei affichage
 
  
@@ -188,7 +190,7 @@ if ( phaseKeptAtChange[oscillatorChanging]<0){
      int j;  
   j= (oscillatorChange-1);
   if (j<= 1){
-  j= 11;
+  j= networkSize-1;
   }
        
   if (oscillatorChanged==true )  { 
@@ -218,7 +220,7 @@ if ( phaseKeptAtChange[oscillatorChanging]<0){
  
  void assignMotorWithPositionTer() {
   
-           for (int i = 0; i < 12; i++) {
+           for (int i = 0; i < networkSize; i++) {
       // rev[i]=rev[0];
 
 
@@ -247,7 +249,7 @@ if ( phaseKeptAtChange[oscillatorChanging]<0){
   
   void assignMotorWithDataMappedTer() {
   
-           for (int i = 0; i < 12; i++) {
+           for (int i = 0; i < networkSize; i++) {
       // rev[i]=rev[0];
 
 
@@ -282,15 +284,15 @@ if ( phaseKeptAtChange[oscillatorChanging]<0){
       oldOscillatorChange=oscillatorChange;
       oscillatorChange=oscillatorChange+1;
       } 
-      memoryi=memoryi%12;
-      oscillatorChange=oscillatorChange%12;
+      memoryi=memoryi%networkSize;
+      oscillatorChange=oscillatorChange%networkSize;
      if (oscillatorChange<=0) {
-         memoryi=2;
-         oscillatorChange=2; 
+         memoryi=0;
+         oscillatorChange=0; 
    } 
      if (memoryi<=0) {
-         memoryi=2;
-         oscillatorChange=2; 
+         memoryi=0;
+         oscillatorChange=0; 
    } 
   }
 
@@ -856,6 +858,66 @@ void  splitTimeOriginal(float propagationSpeed) {
     //     print (" oscillatorChange "); println ( oscillatorChange ); 
       
 }
+
+
+void propagation2wayWithSignal2() {   // le boule d'apres prends la position de la boue d'vant + PI/8
+        oscillatorChanged=oscillatorChangingPropagation;
+ //  if ( oscillatorChanged==true){ // A essayer
+     phaseKeptAtChange[oscillatorChange]= map (signal[2], 0, 1, 0, TWO_PI);
+  //    }
+
+   //***  phaseKeptAtChange[oscillatorChange]=newPosXaddSignal[oldOscillatorChange]%TWO_PI;
+    //  phaseKeptAtChange[oscillatorChange]=phaseKeptAtChange[oldOscillatorChange];
+   //   phaseKeptAtChange[oldOscillatorChange]=               LFO[oscillatorChange];
+
+  
+   
+   
+   /*
+    if (doZ==true){ // A essayer
+
+       LFO[oldOscillatorChange] = phaseKeptAtChange[oldOscillatorChange]+QUARTER_PI*1/2 ;  // on ajoute 
+       dataMappedForMotor[oldOscillatorChange]= (int) map (LFO[oldOscillatorChange], 0, TWO_PI , 0, numberOfStep);  // 
+       println (" true phaseKeptAtChange[oscillatorChange] ", oscillatorChange, " " ,  phaseKeptAtChange[oldOscillatorChange]);
+ 
+       newPosXaddSignal[oldOscillatorChange]= map (dataMappedForMotor[oldOscillatorChange], 0, numberOfStep, 0, TWO_PI);
+     }
+     
+    if (doZ==false){ 
+
+       LFO[oldOscillatorChange] = phaseKeptAtChange[oldOscillatorChange]-QUARTER_PI*1/2 ;  //
+       dataMappedForMotor[oldOscillatorChange]= (int) map (LFO[oldOscillatorChange], 0, TWO_PI, 0, numberOfStep);
+       println (" false phaseKeptAtChange[oscillatorChange] ", oldOscillatorChange, " " ,  phaseKeptAtChange[oldOscillatorChange]);
+ 
+       newPosXaddSignal[oldOscillatorChange]= map (dataMappedForMotor[oldOscillatorChange], 0, numberOfStep, 0, TWO_PI);
+     }
+
+*/
+    if (doZ==true){ 
+
+       LFO[oscillatorChange] =LFO[oldOscillatorChange]+QUARTER_PI*1/2 ;  // on ajoute 
+       LFO[oscillatorChange] = LFO[oscillatorChange]%TWO_PI;
+       dataMappedForMotor[oscillatorChange]= (int) map (LFO[oscillatorChange], 0, TWO_PI , 0, numberOfStep);  // 
+       println (" true phaseKeptAtChange[oscillatorChange] ", oscillatorChange, " " ,  phaseKeptAtChange[oldOscillatorChange]);
+ 
+       newPosXaddSignal[oscillatorChange]= map (dataMappedForMotor[oscillatorChange], 0, numberOfStep, 0, TWO_PI);
+     }
+     
+    if (doZ==false && oscillatorChanged==true){ 
+
+       LFO[oscillatorChange] =LFO[oldOscillatorChange]+QUARTER_PI*1/2 ;  // on ajoute 
+     // LFO[oscillatorChange] = phaseKeptAtChange[oscillatorChange]; // LFO[oscillatorChange]+
+
+       dataMappedForMotor[oscillatorChange]= (int) map (LFO[oscillatorChange], 0, TWO_PI , 0, numberOfStep);  // 
+       println (" true phaseKeptAtChange[oscillatorChange] ", oscillatorChange, " " ,  phaseKeptAtChange[oldOscillatorChange]);
+      
+       newPosXaddSignal[oscillatorChange]= map (dataMappedForMotor[oscillatorChange], 0, numberOfStep, 0, TWO_PI);
+       // newPosXaddSignal[oscillatorChange]= map (dataMappedForMotor[oldOscillatorChange], 0, numberOfStep, 0, TWO_PI);
+     }
+   
+ }
+ 
+
  
 
 

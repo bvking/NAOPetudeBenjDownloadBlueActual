@@ -1,4 +1,18 @@
 void addSignalOneAndTwo(){
+
+   if (measure == 66 && beatPrecised == 4 && beatPrecisedTrigged==true) {
+        
+           keyCode = ALT; key = 'v'; // come back to trigEvent
+       //    key ='0'; keyReleased();
+        //   formerKeyMetro = '*';
+
+         //  moveKeys[8]=true;
+         //  moveKeys[12]=true;
+        keyMode = " trigEventWithAbletonSignal ";
+        trigEventWithAbletonSignal();
+        positionMov = " troisieme " ;
+          } 
+
     print (formerKeyMetro);
     text ( " One And Two Original oscillatorChange " + oscillatorChange , -1600, height+800);
     lfoPattern();
@@ -22,11 +36,11 @@ void addSignalOneAndTwo(){
     }
     
     
- splitTime(); 
+    splitTime(); 
 //  splitTimeLfo(); 
  // splitTimeLfoWithAbleton(); 
     
-  addSignalLfoPattern(); 
+    addSignalLfoPattern(); 
  
  println(" formerFormerKey " + char (formerFormerKey) + " formerKey " + char (formerKey) + " key " + key)  ;
  formerFormerKey= formerKey;
@@ -394,4 +408,3 @@ void  splitTimeLfo() {  // signalToSplit = lfoPhase3
         
          
 }
- 

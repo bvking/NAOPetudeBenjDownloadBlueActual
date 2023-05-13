@@ -1041,7 +1041,7 @@ void phasePattern() { // need standard mode to be trigged
   } else if (key == '0') {//Set all frequencies at 2.0");
     for (int i = 0; i < networkSize-0; i++) {   
       //  net.naturalFrequency[i]=2.0; 
-      net.naturalFrequency[i]=1;
+      net.naturalFrequency[i]=0.25;
     }
     //  printSummary(i);
   } else if (key == '°') {//Set all frequencies at 2.0");
