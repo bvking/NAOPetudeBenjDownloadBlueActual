@@ -9,7 +9,9 @@ void teensyPos(){
     }
        send24DatasToTeensy6motors( 4, 3, -3, -1);
    }
- if (modeStartKeyToFollow != " null ") { 
+ if (modeStartKeyToFollow == " followSignalSampleOppositeWay(frameRatio) " ) { 
+
+  
   for (int i = 0; i < networkSize; i++) {
 
     //rev[i]=rev[0];

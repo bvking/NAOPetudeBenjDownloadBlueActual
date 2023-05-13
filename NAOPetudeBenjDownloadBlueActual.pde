@@ -502,17 +502,27 @@ for (int i = 0; i < networkSize; i++) {
     break;
 
     case 'j': 
-  //   formerKeyMetro = '@';     
+    
     modeStartKeyToFollow = " followSignalSampledOppositeWay(frameRatio) ";
-   // formerKeyMetro = 'J';  
+    
 
     text ( modeStartKeyToFollow + " not good ? " , width/4, -height/4); 
-    // keyMode = " modeStartKeyToFollow " ;
     text ( keyMode, width/4, -height/4); 
     followSignalSampledOppositeWay(frameRatio);
 
     break;
+/*
+     case 'j': 
+    
+    modeStartKeyToFollow = " followSignalSampled ";
+    
 
+    text ( modeStartKeyToFollow + " not good ? " , width/4, -height/4); 
+    text ( keyMode, width/4, -height/4); 
+    followSignalSampled(frameRatio);
+
+    break;
+*/
     case 'z':     
  //   modeStartKeyToFollow = " samplingMode ";
  //   text ( modeStartKeyToFollow, width/4, -height/4); 
@@ -830,8 +840,10 @@ for (int i = 0; i < networkSize; i++) {
   //  noStroke();
   //  fill( 255, 40, 40 );
   // circle ( 100* cos (movement)+400, 100*sin (movement)+400, 20);
-  //   followSignalSampled(frameRatio); //no WORK with frame
-     followSignalSampledOppositeWay(frameRatio);// with millis()
+  modeStartKeyToFollow = " followSignalSampled ";
+
+  //  followSignalSampled(frameRatio); //no WORK with frame
+   //  followSignalSampledOppositeWay(frameRatio);// with millis()
   //  phasePattern();
    // pendularPatternNoJoe(); // without transformation of position's datas in the Arduino.
     

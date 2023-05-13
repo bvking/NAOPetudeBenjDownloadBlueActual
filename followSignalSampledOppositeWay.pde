@@ -1,10 +1,15 @@
 void followSignalSampledOppositeWay(int ratioTimeFrame){
- 
+  if (modeStartKeyToFollow == " followSignalSampled " || modeStartKeyToFollow == " followSignalSampledOppositeWay(frameRatio) " )  {
+    text ("delayTimeFollowPhase11: " + delayTimeFollowPhase11, 500, 500);
+   }
+ /*
 if (formerDecayTime>decayTime){
   frameCountBis=frameCountBis+1;
   } 
   formerDecayTime = decayTime;
   decayTime = millis()%25;// incremente frameCountBis+1 each 100 millisecondes
+*/
+  frameCountBis=frameCountBis+1;
   int delayRatio=ratioTimeFrame;
 
  //**   samplingMovement(2);
@@ -15,6 +20,7 @@ if (formerDecayTime>decayTime){
      //here in a previous function we could change the ball followed if the space of phase between phases[0] and phase 9 is more than 360° for example
 
     samplingMovementPro();
+   //   keyReleasedfollowSignal(); //usefull?
     text ( "  movementInterpolated in FOLLOW opposite WAY" +  movementInterpolated +  " oldmovementInterpolated " + oldMovementInterpolated , 400, 900 );
   //  if (oldMovementInterpolated>movementInterpolated){
    //   movementInterpolated= map (movementInterpolated, 0, TWO_PI, TWO_PI, 0);
@@ -38,35 +44,12 @@ if (formerDecayTime>decayTime){
   //     drawBall( 0, movementInterpolated);
     //MAP movementInterpolated
        println ( "  movementInterpolated in FOLLOW opposite WAY" +  movementInterpolated +  " oldmovementInterpolated " + oldMovementInterpolated  );
-    /*
-    if (phases[0][frameCountBis % nbMaxDelais]<=0){
-   
-     DataToDueCircularVirtualPosition[0]= int (map (phases[0][frameCountBis % nbMaxDelais], 0, -TWO_PI, numberOfStep, 0)); 
- 
-     phases[0][frameCountBis % nbMaxDelais]= map (DataToDueCircularVirtualPosition[0], numberOfStep, 0, 0, -TWO_PI);
-
-       }  
-   else {
-    
-    DataToDueCircularVirtualPosition[0]= (int) map (phases[0][frameCountBis % nbMaxDelais], 0, TWO_PI, 0, numberOfStep); 
-
-      phases[0][frameCountBis % nbMaxDelais]= map (DataToDueCircularVirtualPosition[0], 0, numberOfStep, 0, TWO_PI);
-   
-     }
-    */ 
   
-   //drawBall(  0, phases[0][frameCountBis % nbMaxDelais] );  
-    // newPosFollowed[i]
-    // newPosFollowed[0]= phases[0][frameCountBis % nbMaxDelais]; // %TWO_PI
-    // println ( " phases[0][frameCountBis % nbMaxDelais " + phases[0][frameCountBis % nbMaxDelais] ) ; // %TWO_PI
-
-    //  drawBallOppositeWay(0, phases[0][frameCountBis % nbMaxDelais]); //networkSize-5 affiche le point 0. NE PAS AFFICHER SINON IL APPARAIT EN DOUBLE
- 
     for (int i = 1; i < networkSize; i+=1) { // 1 follow phase 0
        
   //   follow( i-1, i, 20 * i, 0);  // Modifier les deux derniers paramètres : délais et phase
   //   followOppositeWay( i-1, i+0, delayTimeFollowPhase11*1*frameRatio/ratioTimeFrame, (phaseShiftingFollowPhase11));  // ici, le temps que les points attendent pour se suivre est de 5 frames, et il faut un espace entre eux de QUARTER_PI/6
-     followOppositeWay( i-1, i+0, delayTimeFollowPhase11*1, (phaseShiftingFollowPhase11));  // ici, le temps que les points attendent pour se suivre est de 5 frames, et il faut un espace entre eux de QUARTER_PI/6
+     followOppositeWay( i-1, i+0, delayTimeFollowPhase11*frameRatio/ratioTimeFrame, (phaseShiftingFollowPhase11));  // ici, le temps que les points attendent pour se suivre est de 5 frames, et il faut un espace entre eux de QUARTER_PI/6
       
       phaseMapped[i]=phases[i+0][frameCountBis % nbMaxDelais]; // use varaible phaseMapped (to play movement with time delay or phase delay) to well send it in Teensy
    
@@ -74,29 +57,7 @@ if (formerDecayTime>decayTime){
     //  println ( " phases[i][frameCountBis % nbMaxDelais " + i + " " + phases[i][frameCountBis % nbMaxDelais] ) ; 
  }
 
-  for (int i = 0; i < networkSize; i+=1) { // 1 follow phase 0
-       
- // newPosFollowed[i]=phases[i][frameCountBis % nbMaxDelais]; // signals to follow
 
- }
-
-   for (int i = 1; i < networkSize; i+=1) { // 1 follow phase 0
-
-     if (newPosFollowed[i]<=0){
-   
- //    DataToDueCircularVirtualPosition[0]= int (map (newPosFollowed[i], 0, -TWO_PI, numberOfStep, 0)); 
- 
-  //   newPosFollowed[i]= map (DataToDueCircularVirtualPosition[i], numberOfStep, 0, 0, -TWO_PI);
-
-       }  
-   else {
-    
- //   DataToDueCircularVirtualPosition[0]= (int) map (newPosFollowed[i], 0, TWO_PI, 0, numberOfStep); 
-
-  //   newPosFollowed[i]= map (DataToDueCircularVirtualPosition[i], 0, numberOfStep, 0, TWO_PI);
-   
-    }
-  }
  
   if (formerFormerKey == '#' || modeStartKeyToFollow == " followSignalSampledOppositeWay(frameRatio) ") {
     
@@ -127,10 +88,13 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
 
     if (key != '#' ) {
     if (modeStartKeyToFollow == " followSignalSampledOppositeWay(frameRatio) ") {
-     phasePattern();
+    // phasePattern();
+
+    phasePatternBase();
      
     for (int i = 0; i < networkSize-0; i+=1) { 
-    phaseMappedFollow[i]= net.phase[i];// add offset given by pendularPattern   
+   // phaseMappedFollow[i]= net.phase[i];// add offset given by pendularPattern   
+    phaseMappedFollow[i]= netPhaseBase[i];
     phaseMappedFollow[i]= phaseMappedFollow[i]%TWO_PI;  
     }
    }
@@ -160,7 +124,7 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
 
  for (int i = 0; i < networkSize-0; i+=1) { 
   newPosF[i]=phaseMapped[i]; // %TWO_PI      display data and use them to control motor
- // net.phase[i]=phaseMapped[i];
+ // net.phase[i]=phaseMapped[i];  display but disturbing
   newPosX[i]=phaseMapped[i]; // better to count revolution
   //print ( " newPosF[i] " + newPosF[i]);
   }
@@ -185,10 +149,15 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
 
       print( " positionToMotor[i] " ); print ( positionToMotor[i]);
       print( " newPosF[i] " ); print ( newPosF[i]); print( " oldPosF[i] " ); print ( oldPosF[i]);
-      print (" revolutionLFO "); print ( i); print ("  "); println (revLfo[i]); 
+      print (" revLFO "); print ( i); print ("  "); println (revLfo[i]); 
      oldPositionToMotor[i]=  positionToMotor[i];
+    }
+     countRevsContinue();
+     print ( " compteur dans followSignalSampled "); showArray (rev);
+
+     for (int i = 0; i <  networkSize+0; i+=1) {
      oldPosF[i]=newPosF[i]; 
-  }
+     }
 
 
 
@@ -215,7 +184,8 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
       }
     }
 
- send24DatasToTeensy6motors(4, 3, -4, -1);  // avant dernier >-1 alors compute data
+   teensyPos();
+//*** send24DatasToTeensy6motors(4, 3, -4, -1);  // avant dernier >-1 alors compute data
  // mapDataToMotor(); // just to dislay on screen?
   
 }
