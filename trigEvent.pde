@@ -282,7 +282,7 @@ void trigEventWithAbletonSignal() {  // change de sens de propagagtion.   ATTENT
 
         if (measure == 66  && beatPrecised == 4 && beatPrecisedTrigged==true ){ // && frameCount>formerFrameTrigging+1
                  for (int i = 0; i < networkSize-0; i++) {    
-                     net.naturalFrequency[i]+=1;  
+                     net.naturalFrequency[i]+=0.25;  
         }
          net.naturalFrequency[0]=0;  
       }
