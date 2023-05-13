@@ -49,7 +49,7 @@ modeStartKeyToFollow = " null ";
 
     break;
     case 'L': // disable propagation
-   dol=false;
+    dol=false;
 
     break;
     case 'q': // way of propagation

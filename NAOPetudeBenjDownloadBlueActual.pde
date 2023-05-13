@@ -458,8 +458,8 @@ for (int i = 0; i < networkSize; i++) {
     text ( " followDistribueAddLfoPatternLPF ", width/4, -height/4);  
     followDistribueAddLfoPatternLPF();
     break;
-   case 'c':  
-   formerKeyMetro = '@';       
+    case 'c':  
+    formerKeyMetro = '@';       
     modeStartKeyToFollow = " followDistribueAddLfoPatternControl ";
         
    // text ( modeStartKeyToFollow, width/2, -height/4);  
@@ -481,8 +481,8 @@ for (int i = 0; i < networkSize; i++) {
     followSignalLfo(frameRatio, signal[networkSize-1]);
     break;
 
-     case 'd': 
-     formerKeyMetro = '@';    
+    case 'd': 
+    //formerKeyMetro = '@';    
     modeStartKeyToFollow = " followDistribueAddLfoPattern ";
       //  print ( " followDistribueAddLfoPattern in KeyMode null " );
 
@@ -498,7 +498,7 @@ for (int i = 0; i < networkSize; i++) {
      //   print ( " modeStartKeyToFollow " );
 
     // keyMode = " samplingModeInternal " ;
-     text ( modeStartKeyToFollow, width/4, -height/4); 
+    text ( modeStartKeyToFollow, width/4, -height/4); 
     break;
 
     case 'j': 
@@ -508,8 +508,8 @@ for (int i = 0; i < networkSize; i++) {
 
     text ( modeStartKeyToFollow + " not good ? " , width/4, -height/4); 
     // keyMode = " modeStartKeyToFollow " ;
-     text ( keyMode, width/4, -height/4); 
-     followSignalSampledOppositeWay(frameRatio);
+    text ( keyMode, width/4, -height/4); 
+    followSignalSampledOppositeWay(frameRatio);
 
     break;
 
@@ -609,12 +609,9 @@ for (int i = 0; i < networkSize; i++) {
      beginSample=millis();
      text ( " encodeur[0] " + encodeur[0] +  " newPosF[0] " + newPosF[0] + modeStartKeyToFollow + " mouseY " +  mouseY  + " mouseX " +  mouseX  +  measure , -width/4, - height + 100);  
    //      text ( measure + " mouseY ", width/4, -height-400);  
-
      
     //  mouseY=(int) map (automationLFO[1], 0, 1, 0, 400);  // position from Ableton LFOdecay
-
      //****  newPosF[networkSize-1]=  map (mouseY, 0, height/2, 0, TWO_PI);
-
       // mouseX=mouseX+27;
       incrementeX=incrementeX+9;
       incrementeX=incrementeX%800;
@@ -647,37 +644,25 @@ for (int i = 0; i < networkSize; i++) {
 
     
      //  newPosF[networkSize-1]=  map (v0, 0, 800, 0, TWO_PI);
-     
-//==================== sampling from encoder
-
+     //==================== sampling from encoder
      if (measure <=3){
-  send24DatasToTeensy6motors(5, -3, -3, -1);
+     send24DatasToTeensy6motors(5, -3, -3, -1);
       }
 
-   newPosF[0]=  map (encodeur[0], 0, 800, 0, TWO_PI)%TWO_PI;  // tourner CCW
-
-      text  ( " newPosF[0] " + newPosF[0] + " encodeur[0] " +  abs ((int)map (encodeur[0], 0, 800, 0, 800)%800), 300, -1200);
-
-
-//==================== 
-
-
-//==================== sampling from mouseY
+        newPosF[0]=  map (encodeur[0], 0, 800, 0, TWO_PI)%TWO_PI;  // tourner CCW
+        text  ( " newPosF[0] " + newPosF[0] + " encodeur[0] " +  abs ((int)map (encodeur[0], 0, 800, 0, 800)%800), 300, -1200);
+     //==================== sampling from mouseY
 /*
        float radianTorec;
        radianTorec=(float) map (mouseY, 0, 200, 0, TWO_PI)%TWO_PI;  // position from Ableton LFOdecay    
        newPosF[0]= radianTorec;
 */
 
-    //     float x = displacement*cos(newPosF[i]);  
-    //    float  y = displacement*sin(newPosF[i]);  
-     //   rotate (degrees(newPosF[0]));
-
       sphere(side*3);
       sphereDetail( 4*5); 
-//==================== 
+      //==================== 
 
-  text ( " newPosF " + newPosF[0], 0, 500);
+      text ( " newPosF " + newPosF[0], 0, 500);
  
       float rayon=displacement;
       float polarToCartesionX= displacement*cos(newPosF[0]);
@@ -686,11 +671,11 @@ for (int i = 0; i < networkSize; i++) {
     //  mouseX= (int) polarToCartesionX;
     //  mouseY= (int) polarToCartesionY;
 
-   println ( " polarToCartesionX " + polarToCartesionX + " polarToCartesionY " + polarToCartesionY + " newPosF[networkSize-1] " + newPosF[networkSize-1] );
+      println ( " polarToCartesionX " + polarToCartesionX + " polarToCartesionY " + polarToCartesionY + " newPosF[networkSize-1] " + newPosF[networkSize-1] );
 
 
-     // followMovementAll();
-    //   displayfollowMovementAll();
+    // followMovementAll();
+    // displayfollowMovementAll();
      
     
          activeSamplingInternalClock(1); //do not work
