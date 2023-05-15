@@ -1,4 +1,7 @@
 void phasePattern() { // need standard mode to be trigged
+textSize (75);
+text ( " net.naturalFrequency[0] " + net.naturalFrequency[0], -1100, 1000);
+text ( " net.naturalFrequency[1] " + net.naturalFrequency[1], -1100, 1100);
   //************************************ DONT TOUCH
     for (int i = 0; i < (networkSize); i++) { 
    if  (   key == 'J')  {
@@ -527,23 +530,22 @@ void phasePattern() { // need standard mode to be trigged
     
   }
     if (key == 'A') { //A$  Shift frequencies one by one. 
-    float speeed    = map ((float (mouseY)/width*1.0), 0, 1, -4.34, 4.34); 
+    float speeed    = map ((float (mouseY)/width*1.0), 0, 1, -4.68, 4.68); 
     for (int i = 0; i < networkSize; i++) {
       net.naturalFrequency[i]=OldFrequency[i]; 
       printSummary(i);
     }
-    memoryi=0;
+   // memoryi=0;
     net.naturalFrequency[memoryi]= speeed;//4.68/2; // 124 bpm
   }
 
   if (key == 'a') { //A$  Shift frequencies one by one. 
-    float speeed    = map ((float (mouseY)/width*1.0), 0, 1, -4.34, 4.34); 
     for (int i = 0; i < networkSize; i++) {    
       net.naturalFrequency[i]=OldFrequency[i]; 
       printSummary(i);
     }
-    memoryi=0;
-    net.naturalFrequency[0]= speeed;//4.68/2; // 124 bpm  4=108 bpm
+   // memoryi=0;
+    net.naturalFrequency[memoryi]= 4.68/2/2/2/2/2;//4.68/2; // 124 bpm  4=108 bpm
 
   }
 
@@ -992,13 +994,13 @@ void phasePattern() { // need standard mode to be trigged
   else if (key == 'y') { 
     println("y= Increase last frequencies + 0.05*i ");
     for (int i = 0; i < networkSize; i++) {   
-      net.naturalFrequency[i] = net.naturalFrequency[i]*(1.05);
+      net.naturalFrequency[i] = net.naturalFrequency[i]*(sqrt(2));
       printSummary(i);
     }
   } else if (key == 'h') { 
     println(" Decrease last frequencies - 0.05*i"); 
     for (int i = 0; i < networkSize; i++) { 
-      net.naturalFrequency[i] = net.naturalFrequency[i]*(.95);            
+      net.naturalFrequency[i] = net.naturalFrequency[i]/(sqrt(2));            
       printSummary(i);
     }
   } else if (key == 'Y') { 
@@ -1041,7 +1043,7 @@ void phasePattern() { // need standard mode to be trigged
   } else if (key == '0') {//Set all frequencies at 2.0");
     for (int i = 0; i < networkSize-0; i++) {   
       //  net.naturalFrequency[i]=2.0; 
-      net.naturalFrequency[i]=0.25;
+      net.naturalFrequency[i]=net.naturalFrequency[memoryi];
     }
     //  printSummary(i);
   } else if (key == '°') {//Set all frequencies at 2.0");

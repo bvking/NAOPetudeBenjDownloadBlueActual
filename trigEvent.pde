@@ -143,9 +143,12 @@ void trigEventWithAbletonSignal() {  // change de sens de propagagtion.   ATTENT
       
       if (measure==17){ 
          if (beatPrecised==4 && beatPrecisedTrigged==true  ){
-        key = 'ç'; keyReleased();
-        key = '0'; keyReleased();
+        key = 'ç'; keyReleased(); // align
+     //   key = '0'; keyReleased();
         }
+          key = 'a'; keyReleased();
+          key = 't'; keyReleased();
+        
        }
 
       if (measure>16){ 

@@ -67,22 +67,28 @@ void keyReleased() {
       oscillatorBlocked++;
       oscillatorBlocked%=networkSize;
 
+      memoryi++;
+      memoryi%=networkSize;
+
       }
       key='#'; // to trig only once
 
-      }
-   }
+       }
+     }
      if (keyCode == RIGHT) {  
         if (key!='#') {  
 
       if ( keyMode == " phasePattern " || modeStartKeyToFollow == " followDistribueAddLfoPattern "
        || modeStartKeyToFollow == " trigEventWithAbletonSignal " || keyMode == " trigEventWithAbletonSignal "
       ){
-      oscillatorBlocked--;
-      if (oscillatorBlocked < 0) { 
-      oscillatorBlocked=networkSize-1;    
+       oscillatorBlocked--;
+       if (oscillatorBlocked < 0) { 
+       oscillatorBlocked=networkSize-1;    
       }
-      key='#'; // to trig only once
+       if (memoryi < 0) { 
+       memoryi=networkSize-1;    
+      }
+       key='#'; // to trig only once
 
          }
       }
