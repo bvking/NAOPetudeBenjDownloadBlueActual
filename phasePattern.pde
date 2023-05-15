@@ -324,16 +324,18 @@ text ( " net.naturalFrequency[1] " + net.naturalFrequency[1], -1100, 1100);
 
     for (int i = 1; i < (networkSize-1); i++) {
       net.phase[i+1]= net.oldPhase[i];// net.oldPhase[i] keep phase at 0
-      netPhaseBase[i+1]= net.oldPhase[i];// net.oldPhase[i] keep phase at 0
+   //   netPhaseBase[i+1]= net.oldPhase[i];// net.oldPhase[i] keep phase at 0
       net.naturalFrequency[i+1]= OldFrequency[i];
-      netPhaseBase[i]= net.oldPhase[i-1];// // useless
+   //   netPhaseBase[i]= net.oldPhase[i-1];// // useless
       net.naturalFrequency[i]= OldFrequency[i-1]; // useless
 
       printSummary(i);
     }
     netPhaseBase[0]=  netOldPhaseBase[networkSize-1];
+     net.phase[0+1]= net.oldPhase[0];
     net.naturalFrequency[0]= OldFrequency[networkSize-1];
     netPhaseBase[networkSize-1]=  netOldPhaseBase[networkSize-1-1]; // useless
+     net.phase[networkSize-1]= net.oldPhase[networkSize-1-1];
     net.naturalFrequency[networkSize-1]= OldFrequency[networkSize-1-1];// // useless
   } 
 
