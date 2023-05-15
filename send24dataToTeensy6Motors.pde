@@ -39,7 +39,7 @@ void send24DatasToTeensy6motors(int accelerationRatio, int driver0_On_Off, int c
    //println ( " noPortPlugged " + portsUSB[0]); 
    //}
 
-    teensyport.write(dataFromMode);
+  //  teensyport.write(dataFromMode);
       if (frameCount ==5) noLoop();
   }
 

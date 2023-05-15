@@ -22,7 +22,7 @@ text ( " net.naturalFrequency[1] " + net.naturalFrequency[1], -1100, 1100);
 
 //  if  (   formerKeyMetro != 'c') {  // VERY IMPORTANT with CASE c
  if  (   keyMode != " truc "  ) {
-      if  (   keyMode != " truc " ) {
+      if  (   keyMode == " trigEventWithAbletonSignal " ) {
 
     //     splitIncomingSignal();
          /*
@@ -549,6 +549,8 @@ text ( " net.naturalFrequency[1] " + net.naturalFrequency[1], -1100, 1100);
    // memoryi=0;
     net.naturalFrequency[memoryi]= 4.68/2/2/2/2/2;//4.68/2; // 124 bpm  4=108 bpm
 
+    net.naturalFrequency[memoryi]=pow(4, -2);
+
   }
 
 
@@ -996,13 +998,13 @@ text ( " net.naturalFrequency[1] " + net.naturalFrequency[1], -1100, 1100);
   else if (key == 'y') { 
     println("y= Increase last frequencies + 0.05*i ");
     for (int i = 0; i < networkSize; i++) {   
-      net.naturalFrequency[i] = net.naturalFrequency[i]*(sqrt(2));
+      net.naturalFrequency[i] = net.naturalFrequency[i]*sqrt(sqrt(sqrt((sqrt(2)))));      // 4,42% more at each y pressed
       printSummary(i);
     }
   } else if (key == 'h') { 
     println(" Decrease last frequencies - 0.05*i"); 
     for (int i = 0; i < networkSize; i++) { 
-      net.naturalFrequency[i] = net.naturalFrequency[i]/(sqrt(2));            
+      net.naturalFrequency[i] = net.naturalFrequency[i]/sqrt(sqrt(sqrt((sqrt(2)))));          
       printSummary(i);
     }
   } else if (key == 'Y') { 

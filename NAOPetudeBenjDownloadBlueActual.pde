@@ -826,24 +826,24 @@ for (int i = 0; i < networkSize; i++) {
 //   if (formerKeyMetro == 's' ||  formerKeyMetro ==  '@' || formerKeyMetro ==  'B' ) { //you can't distribuate data to others balls  //formerKeyMetro == '*' || formerKeyMetro == '$' ||
   trigFollowSampling=false;
   }
-      
-      
-  if (trigFollowSampling == true ) {
+
+
+
+  if (trigFollowSampling == true ) {  // CHECK from old
       print (" trigFollowSampling ");   println (trigFollowSampling); 
   
     //  followMadTrack1bis(); ..  folloLFO with my technique
     //    followSignal();
   //****  delayTimeFollowPhase11=60;  // to control time phase offseet with a lot of delay time. You can wait one seconde before the next ball follow the previous ball
     
+    
   //  followSignalSampled(frameRatio);
     samplingMovementPro();
   //  noStroke();
   //  fill( 255, 40, 40 );
   // circle ( 100* cos (movement)+400, 100*sin (movement)+400, 20);
-  modeStartKeyToFollow = " followSignalSampled ";
-
-  //  followSignalSampled(frameRatio); //no WORK with frame
-   //  followSignalSampledOppositeWay(frameRatio);// with millis()
+  //   followSignalSampled(frameRatio); //no WORK with frame
+     followSignalSampledOppositeWay(frameRatio);// with millis()
   //  phasePattern();
    // pendularPatternNoJoe(); // without transformation of position's datas in the Arduino.
     
@@ -853,22 +853,23 @@ for (int i = 0; i < networkSize; i++) {
     
 
     rect( (currTime % 2) / 2 * width, 10, 2, 8 );
+  
+//  println (currTime % 2);
     rect( (currTime % 4) / 4 * width, 20, 2, 8 );
     rect( (currTime % 8) / 8 * width, 30, 2, 8 );
     
     rotate(-PI/2);
-   // countRevs();
+    countRevs();
    }
    
    modePendulaireModeCirculaire();
-  //  countRevs();
-  //  arduinoPos();
    
+
   
-  // ==================================================================================================================================== 
+  // ================================= 
 
 
-  // ;   
+  // countRevs();   
   println(frameCount + ": " + Arrays.toString(rev));
   // ================== fonction not used
   // devant_derriere();
@@ -898,7 +899,21 @@ for (int i = 0; i < networkSize; i++) {
     startStop= 1;  
     print ("MOVEMENT AND TIMER is already started, now START LIVE: "); 
     println (startStop );
+/*
+    String dataMarkedToDue  ="<" 
+    
+      + mapAcceleration[11]+","+  int  (1000/avgTimer.average()*60*1000)  +","+cohesionCounterHigh+","
+      //+ onOFF+"," +nextScene+","
+      //     + mapAcceleration[11]+","+ mapAcceleration[11]+","+mapAcceleration[11]+","+ mapAcceleration[11]+","+mapAcceleration[11]+"," 
 
+   
+      +TrigmodPos[11]+","+TrigmodPos[10]+","+TrigmodPos[9]+","+TrigmodPos[8]+","+TrigmodPos[7]+","+TrigmodPos[6]+","+TrigmodPos[5]+","+TrigmodPos[4]+","+TrigmodPos[3]+","+TrigmodPos[2]+","+TrigmodPos[1]+","+TrigmodPos[0]+ "," // to manage 12 note
+
+      +cohesionCounterLow +","+ cohesionCounterHigh +","+ int (map (LevelCohesionToSend, 0, 1, 0, 100))+ ","+ startStop + ">"; // (2= neither start, neither stop)   cohesionCounterHigh // +orderCohesion+ ">";LevelCohesionToSend ","+ int (map ( LowLevelCohesionToSend, 0, 1, 0, 100))+ 
+
+    print ("dataStart: "); 
+    println(frameCount + ": " +  " " + ( dataMarkedToDue ));
+*/
     formerKey = '#'; //reset formerkey to not trigging LIVE
     formerSartKey = formerKey;
   }
@@ -907,7 +922,7 @@ for (int i = 0; i < networkSize; i++) {
 
   textSize (100);
 
- 
+
   if ( key=='*' ) {// || key==',' || key==';' || key==':'
     circularMov = true;
   }
@@ -920,11 +935,6 @@ for (int i = 0; i < networkSize; i++) {
   println (cohesionTrig);
 
   // ***** automatise Oscillator Moving with a former Key
-   countRevs();
-      for (int i = 0; i <  networkSize-0; i+=1) {
-     net.oldPhase[i]=net.phase[i];
-
-    }
    arduinoPos(); // // carefull with arduinoPos and function after arduinopos
 /*
    if (DataToDueCircularVirtualPosition[0]>0){
@@ -947,9 +957,8 @@ for (int i = 0; i < networkSize; i++) {
    // STARTERCASE with formerKey
    //  starterCaseUsedorNot();
    // ENDSTARTERCASE
-
-
-
+   // end check   
+   
 
   //************ arduinoPos(); // to control Pos of motor and Trigging note and computing pulsation
   // countPendularTrig ();

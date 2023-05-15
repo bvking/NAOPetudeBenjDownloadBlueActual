@@ -54,13 +54,13 @@ void mapDataToMotor() {
     
     }
 
-
+/*
   countRevs();
      for (int i = 0; i <  networkSize-0; i+=1) {
      net.oldPhase[i]=net.phase[i];
 
     }
-
+*/
 
     // map depending way of rotation
 
