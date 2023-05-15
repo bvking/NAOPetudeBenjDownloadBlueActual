@@ -861,7 +861,7 @@ for (int i = 0; i < networkSize; i++) {
    }
    
    modePendulaireModeCirculaire();
-    countRevs();
+  //  countRevs();
   //  arduinoPos();
    
   
@@ -920,6 +920,11 @@ for (int i = 0; i < networkSize; i++) {
   println (cohesionTrig);
 
   // ***** automatise Oscillator Moving with a former Key
+   countRevs();
+      for (int i = 0; i <  networkSize-0; i+=1) {
+     net.oldPhase[i]=net.phase[i];
+
+    }
    arduinoPos(); // // carefull with arduinoPos and function after arduinopos
 /*
    if (DataToDueCircularVirtualPosition[0]>0){

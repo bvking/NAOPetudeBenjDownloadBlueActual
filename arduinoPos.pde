@@ -475,7 +475,7 @@ void arduinoPos() {
      //*********** END COMPUTE ACCELERATION 
   
 
- // countRevs();  
+//  countRevs();  
   bpmAsPulsationFunction();
   printMidiNoteVelocity();
   //SUBZERO
