@@ -1,4 +1,4 @@
-void switchFonctionDependingKeyMode {
+void switchFonctionDependingKeyMode() {
 
  if (  keyMode == " trigEventWithAbletonSignal " || keyModeRed == " trigEventWithAbletonSignal " ) {
     //  formerKeyMetro = '@';       

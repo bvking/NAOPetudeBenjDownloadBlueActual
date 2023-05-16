@@ -259,7 +259,7 @@ for (int i = 0; i < networkSize; i++) {
     text ( modeStartKeyToFollow + " not good ? " , width/4, -height/4); 
     text ( keyMode, width/4, -height/4); 
    // samplingMovementPro();
-    followSignalSampledOppositeWay(frameRatio);
+   // followSignalSampledOppositeWay(frameRatio);
 
     break;
 /*
@@ -594,7 +594,7 @@ for (int i = 0; i < networkSize; i++) {
   //  fill( 255, 40, 40 );
   // circle ( 100* cos (movement)+400, 100*sin (movement)+400, 20);
   //   followSignalSampled(frameRatio); //no WORK with frame
-  //+++   followSignalSampledOppositeWay(frameRatio);// with millis()
+    followSignalSampledOppositeWay(frameRatio);// with millis()
   //  phasePattern();
    // pendularPatternNoJoe(); // without transformation of position's datas in the Arduino.
     
@@ -2746,7 +2746,7 @@ void followDirectLfo(){
       ) {
     
       //    TrigmodPos[i]=0;
-      rev[i]--;
+      RevsContinue[i]--;
       //      print (" revultion negative  "); println (revolution[i]=i+1);
       //   revolution[i]=i+1;
      revolution[i]=0; // trig 0 to sent 0 in Max4Live
@@ -2769,7 +2769,7 @@ void followDirectLfo(){
       ) {
       onOFF = 1;
       //   TrigmodPos[i]=0;
-      rev[i]++;
+      RevsContinue[i]++;
       //   revolution[i]=i+1;
       revolution[i]=0;   // trig 0 to sent 0 in Max4Live
       memoryi=i;
@@ -2794,7 +2794,7 @@ void followDirectLfo(){
     onOFF = 1;
     //   background (27,59,78);
     //    TrigmodPos[i]=0;
-    rev[memoryi]--;
+   // RevsContinue[memoryi]--;
     //      print (" revultion negative  "); println (revolution[i]=i+1);
     //   revolution[i]=i+1;
 //**** revolution[memoryi]=0; // trig 0 to sent 0 in Max4Live   brecause it count twice in negative way!!!

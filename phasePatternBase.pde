@@ -832,7 +832,8 @@ void phasePatternBase() { // trigged with $ or *
       //  netPhaseBase[i] +=(i+1)*0.05;
       //    netPhaseBase[i] +=(i+1)*0.005;
       //  netPhaseBase[i] += (oscillatorBlocked+i)*0.05;  // l'oscillateur ne se bloque pas
-      netPhaseBase[i] -= (networkSize- oscillatorBlocked-i)*0.05;
+   //   netPhaseBase[i] -= (networkSize- oscillatorBlocked-i)*0.05;
+      netPhaseBase[i] = netPhaseBase[i]-(networkSize- oscillatorBlocked-i)*0.05;
 
    //   netPhaseBase[i]=  netPhaseBase[i]%TWO_PI;
       key='#';

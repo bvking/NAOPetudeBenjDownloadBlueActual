@@ -10,6 +10,7 @@ int networkSize = 6;
 int nbBalls=networkSize;
 
 int [] encoderTouched = new int [networkSize];
+int [] RevsContinue = new int [networkSize];
 
 float squaredRootOccurrence(float dVal, int numberOfoccurrence) { // return the root square of returned value
 // as many number of occurence 
@@ -605,6 +606,7 @@ void setup() {
   followNumber= new boolean [networkSize];
   pseudoTimer = new float [networkSize];
   timer =  new float [networkSize];
+  
   phaseReturned =  new float [networkSize];
   
   k=0; // set phase offset to 0

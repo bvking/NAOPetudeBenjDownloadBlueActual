@@ -86,15 +86,15 @@ if (formerDecayTime>decayTime){
 
     if (key != '#' ) {
     if (modeStartKeyToFollow == " followSignalSampledOppositeWay(frameRatio) ") {
-    // phasePattern();
-
-      phasePatternBase();
-     
+   // phasePattern();
+    phasePatternBase();
+   //    key = '#';
     for (int i = 0; i < networkSize-0; i+=1) { 
    // phaseMappedFollow[i]= net.phase[i];// add offset given by pendularPattern   
     phaseMappedFollow[i]= netPhaseBase[i];
     phaseMappedFollow[i]= phaseMappedFollow[i]%TWO_PI;  
     }
+  
    }
   }
    if (keyCode == BACKSPACE ) {
@@ -122,7 +122,7 @@ if (formerDecayTime>decayTime){
 
     for (int i = 0; i < networkSize-0; i+=1) { 
     newPosF[i]=phaseMapped[i]; // %TWO_PI      display data and use them to control motor
- // net.phase[i]=phaseMapped[i];  display but disturbing
+    net.phase[i]=phaseMapped[i];  //display but disturbing ?
     newPosX[i]=phaseMapped[i]; // better to count revolution
   //print ( " newPosF[i] " + newPosF[i]);
   }
@@ -132,7 +132,7 @@ if (formerDecayTime>decayTime){
 
   for (int i = 0; i <  networkSize+0; i+=1) { // la premiere celle du fond i=2,  la derniere celle du devant i=11
 
-  //drawBall(i, newPosX[i] ); //  good. 
+   drawBall(i, newPosX[i] ); //  good. 
 
    print( " newPosX[i] " ); print ( newPosX[i]);
 
@@ -151,7 +151,8 @@ if (formerDecayTime>decayTime){
      oldPositionToMotor[i]=  positionToMotor[i];
     }
      countRevsContinue();
-     print ( " compteur dans followSignalSampled "); showArray (rev);
+     print ( " compteur rev dans followSignalSampled "); showArray (rev);
+     print ( " cou Continue dans followSignalSampled "); showArray (RevsContinue);
 
      for (int i = 0; i <  networkSize+0; i+=1) {
      oldPosF[i]=newPosF[i]; 
@@ -184,6 +185,6 @@ if (formerDecayTime>decayTime){
 
      teensyPos();
 //*** send24DatasToTeensy6motors(4, 3, -4, -1);  // avant dernier >-1 alors compute data
- // mapDataToMotor(); // just to dislay on screen?
+//  mapDataToMotor(); // just to dislay on screen?
   
 }

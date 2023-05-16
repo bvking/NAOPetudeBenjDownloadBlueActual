@@ -103,7 +103,9 @@ void arduinoPos() {
       orderCohesionLow= 1;  // Trig sound and back ground
       //    background (255);
     }
-  } else if  ( orderParameter>0.001 ) { 
+  }
+  
+   else if  ( orderParameter>0.001 ) { 
     cohesionCounterLow=0 ; // Reset cohesionCounterLow at 0
 
     orderCohesionLow= -1;
@@ -257,7 +259,7 @@ void arduinoPos() {
      }
   }
 
-  // SWITCH MODE  *************************************TRIG and  MAP PENDULAR PHASE  for TEENSY and !ç (to manage sound)
+  // SWITCH TO PENDULAR MODE  *************************************TRIG and  MAP PENDULAR PHASE  for TEENSY and !ç (to manage sound)
 
   if (formerKeyMetro == '$') {
         // ActualVirtualPosition[i]=ActualVirtualPositionFromOtherMode[i];
@@ -474,8 +476,11 @@ void arduinoPos() {
       
      //*********** END COMPUTE ACCELERATION 
   
-
-  print ( " countRevs at end of arduinoPos ");  countRevs();  
+ if ( modeStartKeyToFollow != " followSignalSampleOppositeWay(frameRatio) ")
+ {
+  print ( " countRevs at end of arduinoPos ");
+    countRevs();
+  }  
   bpmAsPulsationFunction();
   printMidiNoteVelocity();
   //SUBZERO
@@ -558,7 +563,8 @@ void arduinoPos() {
     println ("nextScenenextScenenextScenenextScenenextScene");
     println ("nextScenenextScenenextScenenextScenenextScene");
     println (nextScene);
-  } else {
+  }
+   else {
     nextScene= 0;
   }     
   //*******************

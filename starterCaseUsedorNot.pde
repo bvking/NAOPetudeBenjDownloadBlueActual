@@ -1,4 +1,4 @@
-void starterCaseUsedorNot (){ 
+void starterCaseUsedorNot() { 
 
  if ( keyMode != " null "  ) {  
     if ( keyMode == " phasePattern "  ) { 
