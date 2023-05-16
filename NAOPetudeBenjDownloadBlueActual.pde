@@ -1540,9 +1540,13 @@ void bpmAsPulsationFunction () {
       int curr_time = millis();
       pulsation = avgTimer.nextValue(curr_time - prev_time);
       prev_time = curr_time;
-      println("Average time between two pulsation = " + pulsation + "ms");
+      textSize (100);
     }
   }
+     rotate (-PI/2);
+        text("Average time between two pulsation = " + pulsation + "ms", -1000, -500 );
+        rotate (PI/2);
+
 }
 
 void bpmAsfrequencyfunction () { 

@@ -11,9 +11,19 @@ int nbBalls=networkSize;
 
 int [] encoderTouched = new int [networkSize];
 
-float log10 (float x) {
+float squaredRootOccurrence(float dVal, int numberOfoccurrence) { // return the root square of returned value
+// as many number of occurence 
+  for (int i=1; i <= numberOfoccurrence; i++) {
+  dVal = sqrt( dVal);
+  }
+  return dVal;  // 
+}
+
+float log10 (float x) { // to discriminate difference between two sounds
   return (log(x) / log(10));
 }
+
+
 
 int numberOfPointInterpolated= 2; 
 float []  interpolatedAngle = new float [numberOfPointInterpolated];
