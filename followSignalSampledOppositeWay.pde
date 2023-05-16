@@ -46,22 +46,20 @@ if (formerDecayTime>decayTime){
        println ( "  movementInterpolated in FOLLOW opposite WAY" +  movementInterpolated +  " oldmovementInterpolated " + oldMovementInterpolated  );
   
     for (int i = 1; i < networkSize; i+=1) { // 1 follow phase 0
-       
-  //   follow( i-1, i, 20 * i, 0);  // Modifier les deux derniers paramètres : délais et phase
-  //   followOppositeWay( i-1, i+0, delayTimeFollowPhase11*1*frameRatio/ratioTimeFrame, (phaseShiftingFollowPhase11));  // ici, le temps que les points attendent pour se suivre est de 5 frames, et il faut un espace entre eux de QUARTER_PI/6
-     followOppositeWay( i-1, i+0, delayTimeFollowPhase11*frameRatio/ratioTimeFrame, (phaseShiftingFollowPhase11));  // ici, le temps que les points attendent pour se suivre est de 5 frames, et il faut un espace entre eux de QUARTER_PI/6
+   // exemple   follow( i-1, i, 20 * i, 0);  // Modifier les deux derniers paramètres : délais et phase
+      followOppositeWay( i-1, i+0, delayTimeFollowPhase11*frameRatio/ratioTimeFrame, (phaseShiftingFollowPhase11));  // ici, le temps que les points attendent pour se suivre est de 5 frames, et il faut un espace entre eux de QUARTER_PI/6
       
       phaseMapped[i]=phases[i+0][frameCountBis % nbMaxDelais]; // use varaible phaseMapped (to play movement with time delay or phase delay) to well send it in Teensy
    
     //   drawBallOppositeWay( i, phases[i-0][frameCountBis % nbMaxDelais] ); 
     //  println ( " phases[i][frameCountBis % nbMaxDelais " + i + " " + phases[i][frameCountBis % nbMaxDelais] ) ; 
- }
+    }
 
 
  
-  if (formerFormerKey == '#' || modeStartKeyToFollow == " followSignalSampledOppositeWay(frameRatio) ") {
+    if (formerFormerKey == '#' || modeStartKeyToFollow == " followSignalSampledOppositeWay(frameRatio) ") {
     
-text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " + newPosFollowed[0], 500, 600);
+    text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " + newPosFollowed[0], 500, 600);
 
       for (int i = 0; i < networkSize-0; i+=1) { 
         
@@ -70,19 +68,19 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
 
        phaseMapped[i] = newPosFollowed[i]+phaseMappedFollow[i]; // new signal is a composition 
    
-    if (phaseMapped[i]<0){
+      if (phaseMapped[i]<0){
    
-     DataToDueCircularVirtualPosition[i]= int (map (phaseMapped[i], 0, -TWO_PI, numberOfStep, 0)); 
-     phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], numberOfStep, 0, 0, -TWO_PI);
+       DataToDueCircularVirtualPosition[i]= int (map (phaseMapped[i], 0, -TWO_PI, numberOfStep, 0)); 
+       phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], numberOfStep, 0, 0, -TWO_PI);
    
        }
        
-   else {
+      else {
     
-    DataToDueCircularVirtualPosition[i]= (int) map (phaseMapped[i], 0, TWO_PI, 0, numberOfStep); 
-    phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], 0, numberOfStep, 0, TWO_PI);
-    }
-  }
+       DataToDueCircularVirtualPosition[i]= (int) map (phaseMapped[i], 0, TWO_PI, 0, numberOfStep); 
+       phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], 0, numberOfStep, 0, TWO_PI);
+      }
+   }
   
  }
 
@@ -90,7 +88,7 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
     if (modeStartKeyToFollow == " followSignalSampledOppositeWay(frameRatio) ") {
     // phasePattern();
 
-    phasePatternBase();
+      phasePatternBase();
      
     for (int i = 0; i < networkSize-0; i+=1) { 
    // phaseMappedFollow[i]= net.phase[i];// add offset given by pendularPattern   
@@ -111,21 +109,21 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
     DataToDueCircularVirtualPosition[i]= int (map (phaseMapped[i], 0, -TWO_PI, numberOfStep, 0)); 
    //   net.oldPhase[i]=phaseMapped[i];
    //  net.phase[i]= phaseMapped[i];
-   phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], numberOfStep, 0, 0, -TWO_PI);
+    phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], numberOfStep, 0, 0, -TWO_PI);
        }
         
-   else
+    else
   
-   DataToDueCircularVirtualPosition[i]= (int) map (phaseMapped[i], 0, TWO_PI, 0, numberOfStep);
-   phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], 0, numberOfStep, 0, TWO_PI);
+    DataToDueCircularVirtualPosition[i]= (int) map (phaseMapped[i], 0, TWO_PI, 0, numberOfStep);
+    phaseMapped[i]= map (DataToDueCircularVirtualPosition[i], 0, numberOfStep, 0, TWO_PI);
 
   }
  }
 
- for (int i = 0; i < networkSize-0; i+=1) { 
-  newPosF[i]=phaseMapped[i]; // %TWO_PI      display data and use them to control motor
+    for (int i = 0; i < networkSize-0; i+=1) { 
+    newPosF[i]=phaseMapped[i]; // %TWO_PI      display data and use them to control motor
  // net.phase[i]=phaseMapped[i];  display but disturbing
-  newPosX[i]=phaseMapped[i]; // better to count revolution
+    newPosX[i]=phaseMapped[i]; // better to count revolution
   //print ( " newPosF[i] " + newPosF[i]);
   }
 
@@ -184,7 +182,7 @@ text ( " modeStartKeyToFollow " + modeStartKeyToFollow + " newPosFollowed[0] " +
       }
     }
 
-   teensyPos();
+     teensyPos();
 //*** send24DatasToTeensy6motors(4, 3, -4, -1);  // avant dernier >-1 alors compute data
  // mapDataToMotor(); // just to dislay on screen?
   

@@ -94,6 +94,14 @@ boolean trigEffectBis;
 
 void draw() {
 
+   if ( key=='*' ) {
+    circularMov = true;
+  }
+
+  if ( key=='$') {//
+    circularMov = false;
+  }
+
  
  print (" encodeur "); showArray (encodeur);
  print (" countRev "); showArray (rev); 
@@ -111,275 +119,17 @@ textSize(50);
  print (" BEGIN OF MAIN KEYCODE  ");   
  
  printModeAndKey();
-  
-    if (moveKeys[0]==true){ // CONTROL && a pressed
- //   mappingMode = " circular " ;
-    print (" ***************** ", mappingMode);
-    }
-    
-    if (moveKeys[1]== true){ // CONTROL a && z pressed
- //   mappingMode = " pendular " ;
-    print (" ***************** ", mappingMode);   
-    }  
 
-    if (moveKeys[8]==true && moveKeys[0]==true){ // CONTROL && a pressed
-  //  keyMode = " signal " ;
-    keyMode = " addSignalOneAndTwoTer " ;
-  // formerKeyMetro = '@';
-    print (" keyMode ", keyMode );
-    }
-  
-    if (moveKeys[8]==true && moveKeys[1]==true){ // CONTROL && z pressed
-    keyMode = " addSignalOneAndTwo " ;
-   // formerKeyMetro = '@';
-    print (" keyMode ",  keyMode );
-    }
-    
-    if (moveKeys[8]==true && moveKeys[2]==true){ // CONTROL && e pressed
-    keyMode = " addSignalOneAndTwoBis "  ;
-  //  formerKeyMetro = '*';
-    print (" keyMode ",  keyMode );
-    }
+ setKeyModeByTappingKeyPadOnce();
 
-    if (moveKeys[8]==true && moveKeys[10]==true){ // CONTROL && r pressed
-    keyMode = " addSignalOneAndTwoQuater "  ;
-  //  formerKeyMetro = '*';
-    print (" keyMode ",  keyMode );
-    }
+ setMovement(key, false);
 
-    if (moveKeys[8]==true && moveKeys[13]==true){ // ALT && t pressed
-    keyMode = " propagationBallRotation "  ;
-  //  formerKeyMetro = '*';
-    print ("Alt t + keyMode ",  keyMode );
-    }
-
-
-    if (moveKeys[8]==true && moveKeys[16]==true){ // ALT && t pressed
-    keyMode = " propagationBallRotationBis "  ;
-  //  formerKeyMetro = '*';
-    print ("Alt y + keyMode ",  keyMode );
-    }
-
-
-        
-    if (moveKeys[8]==true && moveKeys[3]==true){ // CONTROL && q pressed
-    keyMode = " followDirectLfo " ;
-    formerKeyMetro = '@';
-    print (" keyMode ",  keyMode );
-    }
-    
-    if (moveKeys[8]==true && moveKeys[4]==true){ // CONTROL && s pressed
-    keyMode = " followDistribueAddphasePattern " ;
-    
-    formerKeyMetro = '*';
-    print (" keyMode ",  keyMode );
-    }
-    
-    if (moveKeys[8]==true && moveKeys[5]==true){ // ALT && d pressed
-    keyMode = " followDistribueAddLfoPattern " ;
-    
-    formerKeyMetro = '*';
-    print (" keyMode ",  keyMode );
-    }
-    
-    if (moveKeys[8]==true && moveKeys[6]==true){ //ALT && w pressed
-    keyMode = " samplingMode " ;
-    
-   // formerKeyMetro = '*';
-    print (" keyMode ",  keyMode );
-    }
-    
-    if (moveKeys[8]==true && moveKeys[7]==true){ // ALT && x pressed
-    keyMode = " null " ;
-    
-   //formerKeyMetro = '*';
-    print (" keyMode ",  keyMode, " formerKeyMetro ", formerKeyMetro );
-    }
-    
-   if (moveKeys[8]==true && moveKeys[9]==true){ // ALT && c pressed  moveKeys[9]==true  //  r pressed  moveKeys[10]==true
-    keyMode = " followDistribueAddLfoPatternControl " ;
-   // formerKeyMetro = '*';
-     
- //  formerKeyMetro = '#';  // can't add phasee
-    print (" keyMode ",  keyMode, " formerKeyMetro ", formerKeyMetro );
-    }
-
-   if (moveKeys[8]==true && moveKeys[11]==true){ // ALT & f
-   // keyMode = " methodAbleton " ;
-    keyMode = " trigEventWithAbletonSignal " ;
-    formerKeyMetro = '*';
-  }
-
-   if (moveKeys[8]==true && moveKeys[12]==true){ // ALT & v
-    keyMode = " trigEventWithAbletonSignal " ;
-  //  formerKeyMetro = '*';
-  }
-    
-   if (key == '%' ){ 
-    keyMode = " phasePattern " ;
-   
-    
-  // formerKeyMetro = '*';
-    print (" keyMode ",  keyMode, " formerKeyMetro ", formerKeyMetro );
-    }
-    
-        if (key == 'ù' ){
-    keyMode = " abletonPattern " ;
-    abletonPattern();
-   
-    
-   formerKeyMetro = '*';
-    print (" keyMode ",  keyMode, " formerKeyMetro ", formerKeyMetro );
-    }
-    
-  
-   if (keyMode == " followDistribueAddLfoPatternControl " ){ //moveKeys[8]==true && // CONTROL 
-   // if (formerFormerKey!='#'){
-     /*
-     if (Key!='#'){
-    controlTrigLfoPattern = millis();
-  
-     }
-       */
- //  keyMode = " followDistribueAddLfoPatternControl " ;
-    
-  // formerKeyMetro = '';
-    }
-    
-    
-    
-     
-    setMovement(key, false); 
         println (" modeStartKeyToFollow ", modeStartKeyToFollow, " keyModeRed",  keyModeRed,"keyMode",  keyMode, "formerKeyMetro ", formerKeyMetro, " controlTrigLfoPattern ", controlTrigLfoPattern );
-    keyModeRed = keyMode; // dont read keyMode in file.txt
+  keyModeRed = keyMode; // dont read keyMode in file.txt
 
-     if (  keyMode == " trigEventWithAbletonSignal " || keyModeRed == " trigEventWithAbletonSignal " ) {
-    //  formerKeyMetro = '@';       
-          //  modeStartKeyToFollow = " trigEventWithAbletonSignal ";
-            trigEventWithAbletonSignal();
-      text ( keyMode, -width, -height); 
-       }
-     
-      if (keyMode == " addSignalOneAndTwoQuater " || keyModeRed == " addSignalOneAndQuater " ) { //drive ball with lfo
-    //   PatternFollowLfo();
-     propagationMode();
-      text ( keyMode, -width, -height); 
-    }
-   
-    if (keyMode == " addSignalOneAndTwoTer " || keyModeRed == " addSignalOneAndTwoTer " ) { //drive ball with lfo
-    //   PatternFollowLfo();
-     addSignalOneAndTwoTer();
-      text (" ALT a " + keyMode, -width, -height); 
-    }
+  switchFonctionDependingKeyMode();
+
     
-    
-    if (keyMode == " addSignalOneAndTwoBis " || keyModeRed == " addSignalOneAndTwoBis " ) { //drive ball with lfo
-    //   PatternFollowLfo();
-     addSignalOneAndTwoBis();
-      text ( keyMode, -width, -height); 
-    }  
-
-  if (keyMode == " addSignalOneAndTwo " || keyModeRed == " addSignalOneAndTwo " ) { //drive ball with lfo
-    //   PatternFollowLfo();
-     addSignalOneAndTwo();
-      text ( " ALT z " + keyMode, -width, -height); 
-    }
-  
-  if (keyMode == " methodAbleton " || keyModeRed == " methodAbleton ") { //drive ball with lfo
-     methodAbleton();
-     text ( keyMode, -width, -height); 
-     
-  }
-  
-  if (keyMode == " followDirectLfo " || keyModeRed == " followDirectLfo ") { //drive ball with lfo
-     followDirectLfo();
-      text ( keyMode, -width, -height); 
-  }
-  
-  if (keyMode == " followDistribueAddphasePattern " || keyModeRed == " followDistribueAddphasePattern ") { //drive ball with lfo
-     followDistribueAddphasePattern();
-      text ( keyMode, -width, -height); 
-  }
-  
-  if (keyMode == " followDistribueAddLfoPatternBis " || keyModeRed == " followDistribueAddLfoPatternBis ") { //drive ball with lfo
-     followDistribueAddLfoPattern();
-      text ( keyMode, -width, -height); 
-  }
-  
-    if (keyMode == " samplingMode " || keyModeRed == " samplingMode ") { //drive ball with lfo
-  //   followDistribueAddLfoPattern();
-     text ( keyMode, -width, -height);
-  }
-  
-  
-  
-  if (keyMode ==  " followDistribueAddLfoPatternControl " || keyModeRed == " followDistribueAddLfoPatternControl ") { // drive with CONTROL & r
-       if (key!='#'){
-    controlTrigLfoPattern = millis();
-    }
-   //  followDistribueAddLfoPatternControl();
-  }
-
-
-      if (keyMode == " propagationBallRotation " || keyModeRed == " propagationBallRotationRec ") { 
-        propagationBallRotation();
-     text (" Alt t " + keyMode, -width*2, -height*3);
-  }
-
-     if (keyMode == " propagationBallRotationBis " || keyModeRed == " propagationBallRotationBis ") { 
-        propagationBallRotationBis();
-     text (" Alt y " + keyMode, -width*2, -height*3);
-  
-  }
-
-
-  
-  if (keyMode == " null " || keyModeRed == " null ") { //drive ball with lfo
-    //  followDistribueAddLfoPattern();
-      text (keyMode, (width/2), height/2);  
-
-  }
-  
-   if (keyMode == " phasePattern " ) { //drive ball with lfo
-    //  followDistribueAddLfoPattern();
-   // followDistribueAddLfoPattern();
-    // phasePattern();
-      text (keyMode + " " + signal[5] , (width/2), height/2); 
-    
-
-  }
-  
-     if (keyMode == " abletonPattern " ) { //drive ball with lfo
-    //  followDistribueAddLfoPattern();
-      abletonPattern();
-      text (keyMode, (width/2), height/2);  
-
-  }
-
-
-    if (keyMode == " signal "){ // || formerKeyMetro == 'J'
-         text ( keyMode, -width, -height); 
-    for (int i = 2; i <  networkSize; i++) {
-    net.oldPhase[i] =  net.phase[i]; 
-    net.phase[i] =  map (signal[i], 0, 1, 0, TWO_PI);   //  
-    println ( " signalTo_net.phase ", (i), net.phase[i] );
-    
-    if (net.oldPhase[i]>net.phase[i]){
-   
-     DataToDueCircularVirtualPosition[i]= int (map (net.phase[i], TWO_PI, 0, numberOfStep, 0)); 
-     net.oldPhase[i]=net.phase[i];
-   
-     }
-       
-     else
-    
-    DataToDueCircularVirtualPosition[i]= (int) map (net.phase[i], 0, TWO_PI, 0, numberOfStep); 
-    net.oldPhase[i]=net.phase[i];
-  
-
-     }
-     sendToTeensy();
-     }
      
       
   
@@ -439,7 +189,7 @@ for (int i = 0; i < networkSize; i++) {
   {   
     if ( key =='a'||  key =='b' ||  key =='c' ||  key =='d' || key =='e' || key =='f' || key =='s' || key =='z' || key =='j'  ) // 
    {
-     if ( formerKeyCode == BACKSPACE){
+     if ( formerKeyCode == ALT){
     modeStartKey = key;   // press l to change formerKeyMetro Mode
      }
     }
@@ -508,6 +258,7 @@ for (int i = 0; i < networkSize; i++) {
 
     text ( modeStartKeyToFollow + " not good ? " , width/4, -height/4); 
     text ( keyMode, width/4, -height/4); 
+   // samplingMovementPro();
     followSignalSampledOppositeWay(frameRatio);
 
     break;
@@ -829,7 +580,7 @@ for (int i = 0; i < networkSize; i++) {
 
 
 
-  if (trigFollowSampling == true ) {  // CHECK from old
+  if (trigFollowSampling == true || trigFollowSampling==false  && modeStartKeyToFollow ==  " followSignalSampledOppositeWay(frameRatio) " ) {  // CHECK from old
       print (" trigFollowSampling ");   println (trigFollowSampling); 
   
     //  followMadTrack1bis(); ..  folloLFO with my technique
@@ -838,12 +589,12 @@ for (int i = 0; i < networkSize; i++) {
     
     
   //  followSignalSampled(frameRatio);
-    samplingMovementPro();
+   //++++ samplingMovementPro();
   //  noStroke();
   //  fill( 255, 40, 40 );
   // circle ( 100* cos (movement)+400, 100*sin (movement)+400, 20);
   //   followSignalSampled(frameRatio); //no WORK with frame
-     followSignalSampledOppositeWay(frameRatio);// with millis()
+  //+++   followSignalSampledOppositeWay(frameRatio);// with millis()
   //  phasePattern();
    // pendularPatternNoJoe(); // without transformation of position's datas in the Arduino.
     
@@ -859,7 +610,7 @@ for (int i = 0; i < networkSize; i++) {
     rect( (currTime % 8) / 8 * width, 30, 2, 8 );
     
     rotate(-PI/2);
-    countRevs();
+   print (" in trig___(frameRatio) before and before arduinoPos "); countRevs();
    }
    
    modePendulaireModeCirculaire();
@@ -869,7 +620,7 @@ for (int i = 0; i < networkSize; i++) {
   // ================================= 
 
 
-  // countRevs();   
+  //print (" before arduinoPos "); countRevs();   
   println(frameCount + ": " + Arrays.toString(rev));
   // ================== fonction not used
   // devant_derriere();
@@ -923,13 +674,7 @@ for (int i = 0; i < networkSize; i++) {
   textSize (100);
 
 
-  if ( key=='*' ) {// || key==',' || key==';' || key==':'
-    circularMov = true;
-  }
-
-  if ( key=='$') {//
-    circularMov = false;
-  }
+ 
 
   cohesionTrig = int (map (LevelCohesionToSend, 0, 1, 0, 100));
   println (cohesionTrig);
@@ -950,7 +695,7 @@ for (int i = 0; i < networkSize; i++) {
  
 
    if (formerKeyMetro != 'J') { //countRevolutions when it is not the mode J
-   countRevs();
+ //  countRevs();
   }
        
    //**********************************************************************    
@@ -980,7 +725,7 @@ for (int i = 0; i < networkSize; i++) {
   }
 
   
-  for (int i = 2; i < networkSize; i++) {
+  for (int i = 0; i < networkSize; i++) {
     phaseReturned[i]=net.phase[i];
   }
   oscSend();
@@ -1336,6 +1081,8 @@ private class MovingAverage {
     return average;
   }
 }
+
+
 void frameratio() { 
   //**************************FRAME RATE    ***********CONTROL FRAME RATIO SPEED
 
@@ -1544,8 +1291,8 @@ void bpmAsPulsationFunction () {
     }
   }
      rotate (-PI/2);
-        text("Average time between two pulsation = " + pulsation + "ms", -1000, -500 );
-        rotate (PI/2);
+     text("Average time between two pulsation = " + pulsation + "ms", -1000, -500 );
+     rotate (PI/2);
 
 }
 
