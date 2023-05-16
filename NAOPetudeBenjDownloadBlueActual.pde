@@ -610,7 +610,7 @@ for (int i = 0; i < networkSize; i++) {
     rect( (currTime % 8) / 8 * width, 30, 2, 8 );
     
     rotate(-PI/2);
-   print (" in trig___(frameRatio) before and before arduinoPos "); countRevs();
+ //  print (" in trig___(frameRatio) before and before arduinoPos "); countRevs();
    }
    
    modePendulaireModeCirculaire();

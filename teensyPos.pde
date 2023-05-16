@@ -1,6 +1,6 @@
 void teensyPos(){
 
-    if (modeStartKeyToFollow == " null ") {  
+    if (modeStartKeyToFollow == " followSignalSampleOppositeWay(frameRatio) ") {  
     
   for (int i = 0; i < networkSize; i++) {  
  //   DataToDueCircularVirtualPosition[i]=(int) newPosF[i]+ (rev[i]*numberOfStep);  // map motor with countrevs
@@ -9,7 +9,7 @@ void teensyPos(){
     }
        send24DatasToTeensy6motors( 4, 3, -3, -1);
    }
- if (modeStartKeyToFollow == " followSignalSampleOppositeWay(frameRatio) " ) { 
+ if (keyMode == " trigEventWithAbletonSignal " ) { 
 
   
   for (int i = 0; i < networkSize; i++) {
@@ -37,7 +37,13 @@ void teensyPos(){
       DataToDueCircularVirtualPosition[i]= int (map (net.phase[i], 0, TWO_PI, 0, numberOfStep));         
     }
   }
-   send24DatasToTeensy6motors( 3, 3, -3, -1);
+    // countRevs();
+    // for (int i = 0; i <  networkSize-0; i+=1) {
+    // net.oldPhase[i]=net.phase[i];
+
+    //}
+   print ( " in TEENSYPOS function ");
+   send24DatasToTeensy6motors( 4, 3, -6, -1);
   }
  
 
@@ -54,13 +60,12 @@ void mapDataToMotor() {
     
     }
 
-/*
   countRevs();
      for (int i = 0; i <  networkSize-0; i+=1) {
      net.oldPhase[i]=net.phase[i];
 
     }
-*/
+
 
     // map depending way of rotation
 
@@ -136,7 +141,7 @@ void mapDataToMotor() {
      text ( signal[2], -400, height-300);
 
   
-    teensyPos();
+   // teensyPos();
      oscSend(); // depend de arduinopos
    //  assignMotorWithPosition();
      
