@@ -185,6 +185,6 @@ if (formerDecayTime>decayTime){
 
      teensyPos();
      send24DatasToTeensy6motors(4, 3, -5, -1);  // avant dernier >-1 alors compute data
-     mapDataToMotor(); // just to dislay on screen? double used with above
+   // mapDataToMotor(); //NOT good too count. do like propagationBis just to dislay on screen? double used with above
   
 }
