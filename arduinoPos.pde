@@ -478,9 +478,10 @@ void arduinoPos() {
   
  if ( modeStartKeyToFollow != " followSignalSampleOppositeWay(frameRatio) ")
  {
-  print ( " countRevs at end of arduinoPos ");
-    countRevs();
+  print ( " countRevs at end of arduinoPos ");showArray (rev);
   }  
+  //  countRevs(); 
+    
   bpmAsPulsationFunction();
   printMidiNoteVelocity();
   //SUBZERO

@@ -438,47 +438,7 @@ void trigEventWithAbletonSignal() {  // change de sens de propagagtion.   ATTENT
 
  
      phasePattern();
-       for (int i = 0; i < networkSize; i++) {
-   //  net.phase[i]=netPhaseBase[i];
-       }
-
-   // mapDataToMotor();
-     countRevs();
-      for (int i = 0; i <  networkSize-0; i+=1) {
-     net.oldPhase[i]=net.phase[i];
-         }
- //  arduinoPos(); // send24DatasToTeensy6motors(5, -3, -3, -1);
- for (int i = 0; i < networkSize; i++) {
-
-    //rev[i]=rev[0];
-
-    //*******************************  ASSIGN MOTOR WITH POSITION
-    //   pos[i]= pos[i]-numberOfStep/4; // The positions 0 of my motors in real are shifted of - half_PI  
-
-    if (rev[i]!=0  && (net.phase[i] >  0) ) { // number of revolution is even and rotation is clock wise   
-     DataToDueCircularVirtualPosition[i]= int (map (net.phase[i], 0, TWO_PI, 0, numberOfStep))+ rev[i]*numberOfStep;
-    }
-
-    //   if (rev[i]!=0  && (net.phase[i] <  0)) { // number of revolution is even and rotation is Counter clock wise   
-    if (rev[i]!=0  && (net.phase[i] <  0)) { // number of revolution is even and rotation is Counter clock wise   
-
-      DataToDueCircularVirtualPosition[i]= int (map (net.phase[i], 0, -TWO_PI, numberOfStep, 0))+ rev[i]*numberOfStep;
-    }
-
-    if (rev[i]==0 && (net.phase[i] < 0) ) { //  number of revolution is 0 and rotation is counter clock wise 
-      DataToDueCircularVirtualPosition[i]= int (map (net.phase[i], 0, -TWO_PI, numberOfStep, 0));        
-      //    print ("pos "); print (i); print (" CCW rev=0");println (pos[i]);
-    }         
-    if  (rev[i]==0 && (net.phase[i] > 0) ) {  //  number of revolution is 0 and rotation is clock wise     
-      DataToDueCircularVirtualPosition[i]= int (map (net.phase[i], 0, TWO_PI, 0, numberOfStep));         
-    }
-  }
-  send24DatasToTeensy6motors(5, -3, -12, -1);
-     for (int i = 0; i <  networkSize-0; i+=1) {
-  //   net.oldPhase[i]=net.phase[i];
-
-    }
-   //  teensyPos();
+  
      oldSplitTimeLfo = splitTimeLfo; 
 } 
 

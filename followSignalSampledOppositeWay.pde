@@ -122,7 +122,7 @@ if (formerDecayTime>decayTime){
 
     for (int i = 0; i < networkSize-0; i+=1) { 
     newPosF[i]=phaseMapped[i]; // %TWO_PI      display data and use them to control motor
-    net.phase[i]=phaseMapped[i];  //display but disturbing ?
+  //  net.phase[i]=phaseMapped[i];  //display but disturbing ?
     newPosX[i]=phaseMapped[i]; // better to count revolution
   //print ( " newPosF[i] " + newPosF[i]);
   }
@@ -184,7 +184,7 @@ if (formerDecayTime>decayTime){
     }
 
      teensyPos();
-//*** send24DatasToTeensy6motors(4, 3, -4, -1);  // avant dernier >-1 alors compute data
-//  mapDataToMotor(); // just to dislay on screen? double used with above
+     send24DatasToTeensy6motors(4, 3, -5, -1);  // avant dernier >-1 alors compute data
+     mapDataToMotor(); // just to dislay on screen? double used with above
   
 }

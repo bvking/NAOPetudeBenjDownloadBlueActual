@@ -612,8 +612,10 @@ for (int i = 0; i < networkSize; i++) {
     rotate(-PI/2);
  //  print (" in trig___(frameRatio) before and before arduinoPos "); countRevs();
    }
-   
-   modePendulaireModeCirculaire();
+
+     modePendulaireModeCirculaire();
+    countRevs();   
+   arduinoPos();
    
 
   
@@ -680,7 +682,7 @@ for (int i = 0; i < networkSize; i++) {
   println (cohesionTrig);
 
   // ***** automatise Oscillator Moving with a former Key
-   arduinoPos(); // // carefull with arduinoPos and function after arduinopos
+ //*+*+*+*+*+*  arduinoPos(); // // carefull with arduinoPos and function after arduinopos
 /*
    if (DataToDueCircularVirtualPosition[0]>0){
        for (int i = 0; i < networkSize; i=+1 ){
@@ -696,6 +698,7 @@ for (int i = 0; i < networkSize; i++) {
 
    if (formerKeyMetro != 'J') { //countRevolutions when it is not the mode J
  //  countRevs();
+   countRevsContinue();
   }
        
    //**********************************************************************    
@@ -871,7 +874,7 @@ void countRevs() { // ============================================= Ter NE PAS T
     decompte[memoryi] = -1; // // RESET COUNTER AT 0 (i know it's strange, otherwise with 0 it begin at 1, not 0)
   }
  */
-} 
+}  
 
 void printSummary(int i) {
   /*
@@ -3110,3 +3113,4 @@ void countRevsLfoPattern22() { // =========================================== Te
  
 }
 */
+

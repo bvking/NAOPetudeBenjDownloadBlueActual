@@ -1,6 +1,6 @@
 void teensyPos(){
 
-    if (modeStartKeyToFollow == " followSignalSampleOppositeWay(frameRatio) ") {  
+    if (modeStartKeyToFollow == " null ") {  
     
   for (int i = 0; i < networkSize; i++) {  
  //   DataToDueCircularVirtualPosition[i]=(int) newPosF[i]+ (rev[i]*numberOfStep);  // map motor with countrevs
@@ -9,9 +9,7 @@ void teensyPos(){
     }
        send24DatasToTeensy6motors( 4, 3, -3, -1);
    }
- if (keyMode == " trigEventWithAbletonSignal " ) { 
-
-  
+ if (modeStartKeyToFollow != " null ") { 
   for (int i = 0; i < networkSize; i++) {
 
     //rev[i]=rev[0];
@@ -37,13 +35,7 @@ void teensyPos(){
       DataToDueCircularVirtualPosition[i]= int (map (net.phase[i], 0, TWO_PI, 0, numberOfStep));         
     }
   }
-    // countRevs();
-    // for (int i = 0; i <  networkSize-0; i+=1) {
-    // net.oldPhase[i]=net.phase[i];
-
-    //}
-   print ( " in TEENSYPOS function ");
-   send24DatasToTeensy6motors( 4, 3, -6, -1);
+   send24DatasToTeensy6motors( 3, 3, -3, -1);
   }
  
 
@@ -59,6 +51,7 @@ void mapDataToMotor() {
     net.phase[i]=newPosXaddSignal[i]; // to display to screen
     
     }
+
 
   countRevs();
      for (int i = 0; i <  networkSize-0; i+=1) {
@@ -96,7 +89,7 @@ void mapDataToMotor() {
 
      TrigmodPos[i]=1;
       
-      if (net.oldPhase[i] > 0 && doo==false ) {
+      if (net.oldPhase[i] > 0 ) {
 
     if ( oldPosF[i]>newPosF[i]) { //
          revLfo[i]++;
@@ -105,13 +98,13 @@ void mapDataToMotor() {
     }
      }
     
-    text (i +  " net.oldPhase[i] " + net.phase[i] + " " + newPosXaddSignal[i] + " oldOldPosF " + oldOldPosF[i] + " oldPosF " + oldPosF[i] + " newPosF " + newPosF[i], width*2, i*50);
+   //  if ( oldPosF[i]>newPosF[i] ){  // && newPosXaddSignal[i]>-HALF_PI &&  newPosXaddSignal[i]< HALF_PI 
+    text (  " net.oldPhase[i] " + net.phase[i] + " " + newPosXaddSignal[i] + " oldOldPosF " + oldOldPosF[i] + " oldPosF " + oldPosF[i] + " newPosF " + newPosF[i], width*2, i*50);
     print (  newPosXaddSignal[i] + " oldOldPosF " + oldOldPosF[i] + " oldPosF " + oldPosF[i] + " newPosF " + newPosF[i]);
 
-  //  if ((doC==true && doo==true && doB!=true )){
-       if ((doo==true )){ // doC==true && 
+    if ((doC==true && doo==true && doB!=true )!=true){
  textSize (100);
-    if (net.oldPhase[i] < 0 || net.oldPhase[i] > 0  ) {
+    if (net.oldPhase[i] < 0 ) {
 
     if ( (newPosF[i]>oldPosF[i]) && (oldPosF[i]<oldOldPosF[i])){ 
          revLfo[i]--;
@@ -133,15 +126,15 @@ void mapDataToMotor() {
 
    
      print (" revLFO "); print ( i); print ("  "); println (revLfo[i]);   
-     text (i + "revLFO " + revLfo[i], -1600, width-400 - 75*i);
-     
+     text ("count", -1600, height-500 - 75*i);
+     text ( revLfo[i], -1400, height-500 - 75*i);
      }
      
      text (" mode " + keyMode , -1600, height-300 );  
      text ( signal[2], -400, height-300);
 
   
-   // teensyPos();
+    teensyPos();
      oscSend(); // depend de arduinopos
    //  assignMotorWithPosition();
      
@@ -152,9 +145,7 @@ void mapDataToMotor() {
  //  send24DatasToTeensy6motors( 10, 3, -3, -1);
   
 }
-
- 
- void assignMotorWithPosition() {
+void assignMotorWithPosition() {
   text (" assignMotorWithPositionTo " + keyMode , 500, 1000);
            for (int i = 0; i < networkSize; i++) {
       // rev[i]=rev[0];
@@ -181,9 +172,8 @@ void mapDataToMotor() {
     }
   
   }
-  
-  
-  void assignMotorWithDataMapped() {
+
+   void assignMotorWithDataMapped() {
   
            for (int i = 0; i < networkSize; i++) {
       // rev[i]=rev[0];

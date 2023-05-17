@@ -1,4 +1,5 @@
 //boolean doQ, doZ, doB; 
+
 boolean propagationTrigged;
 boolean doo=false;
 boolean dol=false;
@@ -34,7 +35,8 @@ modeStartKeyToFollow = " null ";
     case 'o': // way of rotation
     doo=!doo;
     key = '#';
-
+  //  return letter;
+  
     break;
 
     case 'c': 
@@ -68,7 +70,7 @@ modeStartKeyToFollow = " null ";
     case 'B': 
     doQ=false;
     doZ=false;
-    doB=false;
+  //  doB=false;
 
     break;
     case 'z': // change way of propagation
@@ -80,7 +82,12 @@ modeStartKeyToFollow = " null ";
     break;
   //  doB=!doB;
     }
+
+    switch(key) {
+   case '#': // change way of propagation
     
+    break;
+      }
 //   key = '#';
    
     
