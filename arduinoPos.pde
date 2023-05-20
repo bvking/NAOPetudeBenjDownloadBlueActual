@@ -1,4 +1,5 @@
 void arduinoPos() { 
+  
  if (keyMode == " propagationBallRotation " ) { 
     for (int i = 0; i < networkSize; i++) {
 

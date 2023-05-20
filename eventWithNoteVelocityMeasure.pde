@@ -95,14 +95,14 @@ void autmationWithMeasureAndNote() {
     autoNote2();
   }
 
-  if  (measure>=40 && measure<41 && beatTrigged==true ) {//77  //&& beatTrigged==true
+  if  (measure==40 && beatTrigged==true ) {//77  //&& beatTrigged==true
     //    key='o';
     //    keyReleased();
     key=9;
     keyReleased();
     key=CONTROL;
     keyReleased();
-    oscillatorBlocked=10;
+    oscillatorBlocked=networkSize-1;
     speedDelta=4;
   }
   if  (measure>=43 && measure<44 && beatPrecised>=4 && beatPrecisedTrigged==true ) {//77  //&& beatTrigged==true
