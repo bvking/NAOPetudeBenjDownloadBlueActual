@@ -5,11 +5,12 @@ void teensyPos(){
   for (int i = 0; i < networkSize; i++) {  
  //   DataToDueCircularVirtualPosition[i]=(int) newPosF[i]+ (rev[i]*numberOfStep);  // map motor with countrevs
  DataToDueCircularVirtualPosition[i]=(int) newPosF[i]+ (revLfo[i]*numberOfStep);
- 
+ rev=revLfo;
     }
        send24DatasToTeensy6motors( 4, 3, -3, -1);
    }
- if (modeStartKeyToFollow != " null ") { 
+// if (modeStartKeyToFollow != " null ") { 
+  if (keyMode == " trigEventWithAbletonSignal ") { 
   for (int i = 0; i < networkSize; i++) {
 
     //rev[i]=rev[0];
